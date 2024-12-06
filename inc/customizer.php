@@ -31,8 +31,46 @@ function codelogix_customize_register( $wp_customize ) {
 			)
 		);
 	}
+
+
+			
+		$wp_customize->add_section('codelogix_section', [
+			'title'     =>  __( 'Header Background', 'codelogix' ),
+			'priority'  =>  10,
+			'panel'     =>  'colors'
+			]);
+
+		/* Paragraph text */
+		$wp_customize->add_setting( 'header_background', array(
+			'default'           => '#444444',
+			'sanitize_callback' => 'sanitize_hex_color'
+		) );
+		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background', array(
+			'label'    => esc_html__( 'Header Background Colour', 'twentytwelve-child' ),
+			'section'  => 'colors',
+			'settings' => 'header_background',
+			'priority' => 10
+		) ) );
+
+	
+
+	$wp_customize->add_section( 'custom_css', array(
+		'title' => __( 'Custom CSS' ),
+		'description' => __( 'Add custom CSS here' ),
+		'panel' => '', // Not typically needed.
+		'priority' => 160,
+		'capability' => 'edit_theme_options',
+		'theme_supports' => '', // Rarely needed.
+	  ) );
+
+
+	  $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'audio_control', array(
+		'label' => _( 'Featured Home Page Recording' ),
+		'section' => 'media',
+		'mime_type' => 'audio',
+	  ) ) );
 }
-add_action( 'customize_register', 'codelogix_customize_register' );
+
 
 /**
  * Render the site title for the selective refresh partial.
@@ -59,3 +97,6 @@ function codelogix_customize_preview_js() {
 	wp_enqueue_script( 'codelogix-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), _S_VERSION, true );
 }
 add_action( 'customize_preview_init', 'codelogix_customize_preview_js' );
+
+
+	

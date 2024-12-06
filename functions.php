@@ -99,6 +99,8 @@ function codelogix_setup() {
 			'flex-height' => true,
 		)
 	);
+
+
 }
 add_action( 'after_setup_theme', 'codelogix_setup' );
 
@@ -110,7 +112,7 @@ add_action( 'after_setup_theme', 'codelogix_setup' );
  * @global int $content_width
  */
 function codelogix_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'codelogix_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'codelogix_content_width', 1050 );
 }
 add_action( 'after_setup_theme', 'codelogix_content_width', 0 );
 
@@ -176,3 +178,15 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+	 * Section: Colours
+	 *
+	 * @param WP_Customize_Manager $wp_customize
+	 *
+	 * @access private
+	 * @since  1.0
+	 * @return void
+	 */
+
+
+	 add_action( 'customize_register', 'codelogix_customize_register' );
