@@ -971,5 +971,15 @@ textarea {
 -------------------------------------------*/
 
 .site-header{
-	
+	display: flex;
+	margin: 0 auto;
+	max-width: 100%;
 }
+.site-branding{
+	max-width: 30%;
+}
+.site-navigation{
+	max-width: 70%;
+	text-align: right;
+}
+

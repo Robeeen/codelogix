@@ -12,13 +12,7 @@ if ( ! defined( '_S_VERSION' ) ) {
 	define( '_S_VERSION', '1.0.0' );
 }
 
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- */
+
 function codelogix_setup() {
 	/*
 		* Make theme available for translation.
@@ -112,7 +106,7 @@ add_action( 'after_setup_theme', 'codelogix_setup' );
  * @global int $content_width
  */
 function codelogix_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'codelogix_content_width', 1050 );
+	$GLOBALS['content_width'] = apply_filters( 'codelogix_content_width', 1200 );
 }
 add_action( 'after_setup_theme', 'codelogix_content_width', 0 );
 
