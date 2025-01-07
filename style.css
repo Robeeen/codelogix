@@ -645,10 +645,10 @@ textarea {
 
 /* Navigation
 --------------------------------------------- */
-.main-navigation {
+/* .main-navigation {
 	display: block;
 	width: 100%;
-}
+} */
 
 .main-navigation ul {
 	display: none;
@@ -969,17 +969,26 @@ textarea {
 
 /*Header
 -------------------------------------------*/
-
-.site-header{
-	display: flex;
-	margin: 0 auto;
-	max-width: 100%;
+header{
+	width: 100%;
+	box-sizing: border-box;	
 }
+
+.the_header{
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+}
+
 .site-branding{
-	max-width: 30%;
+	width: 30%;
 }
 .site-navigation{
-	max-width: 70%;
-	text-align: right;
+	width: 70%;
+	margin-top: 10px;
+}
+.main-navigation{
+	display: flex;
+	float: right;
 }
 
