@@ -34,23 +34,23 @@ function codelogix_customize_register( $wp_customize ) {
 
 
 			
-		$wp_customize->add_section('codelogix_section', [
-			'title'     =>  __( 'Header Background', 'codelogix' ),
-			'priority'  =>  10,
-			'panel'     =>  'colors'
-			]);
+		// $wp_customize->add_section('codelogix_section', [
+		// 	'title'     =>  __( 'Header Background', 'codelogix' ),
+		// 	'priority'  =>  10,
+		// 	'panel'     =>  'colors'
+		// 	]);
 
-		/* Paragraph text */
-		$wp_customize->add_setting( 'header_background', array(
-			'default'           => '#444444',
-			'sanitize_callback' => 'sanitize_hex_color'
-		) );
-		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background', array(
-			'label'    => esc_html__( 'Header Background Colour', 'twentytwelve-child' ),
-			'section'  => 'colors',
-			'settings' => 'header_background',
-			'priority' => 10
-		) ) );
+		// /* Paragraph text */
+		// $wp_customize->add_setting( 'header_background', array(
+		// 	'default'           => '#444444',
+		// 	'sanitize_callback' => 'sanitize_hex_color'
+		// ) );
+		// $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background', array(
+		// 	'label'    => esc_html__( 'Header Background Colour', 'twentytwelve-child' ),
+		// 	'section'  => 'colors',
+		// 	'settings' => 'header_background',
+		// 	'priority' => 10
+		// ) ) );
 
 	
 

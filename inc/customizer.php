@@ -7,7 +7,7 @@ add_action( 'customize_register', 'codelogix_customize_register' );
 
 function codelogix_customize_register($wp_customize){
    $wp_customize->add_section('custom_logo_section', array(
-       'title'       => __('Custom Logo Settings', 'your-theme-textdomain'),
+       'title'       => __('Custom Logo Settings', 'codelogix'),
        'priority'    => 30,
        'description' => __('Adjust the logo width dynamically.'),
    ));
@@ -21,7 +21,7 @@ function codelogix_customize_register($wp_customize){
 
    // Add control (input field) for logo width
    $wp_customize->add_control('custom_logo_width_control', array(
-       'label'    => __('Logo Width (px)', 'your-theme-textdomain'),
+       'label'    => __('Logo Width (px)', 'codelogix'),
        'section'  => 'custom_logo_section',
        'settings' => 'custom_logo_width',
        'type'     => 'number',
@@ -33,6 +33,8 @@ function codelogix_customize_register($wp_customize){
    ));
 }
 
+
+//Apply the Custom Width to the Logo via CSS
 function custom_logo_dynamic_css() {
    $logo_width = get_theme_mod('custom_logo_width', 200); // Get user-defined width
    ?>
@@ -45,3 +47,44 @@ function custom_logo_dynamic_css() {
    <?php
 }
 add_action('wp_head', 'custom_logo_dynamic_css');
+
+
+//Header Background Color 
+
+add_action( 'customize_register', 'codelogix_customize_header_color' );
+
+function codelogix_customize_header_color($wp_customize){
+
+    $wp_customize->add_section('codelogix_section', [
+        'title'     =>  __( 'Header Background', 'codelogix' ),
+        'priority'  =>  30,
+        'description' => __('Change Header Bckground.'),
+        ]);
+
+    /* Paragraph text */
+    $wp_customize->add_setting( 'header_background', array(
+        'default'           => '#444444',
+        'sanitize_callback' => 'sanitize_hex_color'
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background', array(
+        'label'    => esc_html__( 'Header Background Color', 'codelogix' ),
+        'section'  => 'codelogix_section',
+        'settings' => 'header_background',
+        'priority' => 10
+    ) ) );
+
+}
+
+//Apply the Custom Header Background COLOR via CSS
+function custom_header_color_css() {
+    $background_color = get_theme_mod('header_background', 200); // Get user-defined width
+    ?>
+    <style>
+        #masthead {
+            background: <?php echo esc_attr($background_color);?>;
+            
+        }
+    </style>
+    <?php
+ }
+ add_action('wp_head', 'custom_header_color_css');
