@@ -183,5 +183,5 @@ require get_template_directory() . '/inc/customizer.php';
 	 * @return void
 	 */
 
-
-	 add_action( 'customize_register', 'codelogix_customize_register' );
+	 
+	
