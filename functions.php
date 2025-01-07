@@ -93,7 +93,7 @@ function codelogix_setup() {
 	add_theme_support(
 		'custom-logo',
 		array(
-			'height'      => 250,
+			'height'      => 100,
 			'width'       => 250,
 			'flex-width'  => true,
 			'flex-height' => true,
@@ -171,12 +171,7 @@ require get_template_directory() . '/inc/template-functions.php';
  */
 require get_template_directory() . '/inc/customizer.php';
 
-/**
- * Load Jetpack compatibility file.
- */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
-}
+
 
 /**
 	 * Section: Colours
