@@ -23,7 +23,6 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div id="page" class="site">
-<img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" />
 
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
@@ -41,7 +40,7 @@
 			$codelogix_description = get_bloginfo( 'description', 'display' );
 			if ( $codelogix_description || is_customize_preview() ) :
 				?>
-				<p class="site-description"><?php echo $codelogix_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+				<p class="site-description"><?php echo $codelogix_description;  ?></p>
 			<?php endif; ?>
 			
 		</div><!-- .site-branding -->
