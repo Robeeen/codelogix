@@ -108,7 +108,7 @@ function codelogix_customize_header_color($wp_customize){
     ));
     /* -- Header Border Bottom Control -- */
     $wp_customize->add_control('header_border_control', array(
-        'label' => esc_html__( 'Header Border', 'codelogix'),
+        'label' => esc_html__( 'Header Border Size', 'codelogix'),
         'section'   => 'codelogix_section',
         'settings'  => 'header_border',
         'type'     => 'number',
