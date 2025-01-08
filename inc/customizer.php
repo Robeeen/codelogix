@@ -91,6 +91,7 @@ function codelogix_customize_header_color($wp_customize){
         'default'           => '#444444',
         'sanitize_callback' => 'sanitize_hex_color'
     ) );
+    /* -- Header Background color control -- */
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background', array(
         'label'    => esc_html__( 'Header Background Color', 'codelogix' ),
         'section'  => 'codelogix_section',
@@ -104,7 +105,7 @@ function codelogix_customize_header_color($wp_customize){
         'sanitize_callback' => 'absint',
         'transport'         => 'refresh'
     ));
-
+    /* -- Header Border Bottom Control -- */
     $wp_customize->add_control('header_border_control', array(
         'label' => esc_html__( 'Header Border', 'codelogix'),
         'section'   => 'codelogix_section',
@@ -119,7 +120,7 @@ function codelogix_customize_header_color($wp_customize){
 
 }
 
-//Apply the Custom Header Background COLOR via CSS
+//Apply the Custom Header Background COLOR & Border Bottom via CSS
 function custom_header_color_css() {
     $background_color = get_theme_mod('header_background', 200); // Get user-defined width
     $header_border = get_theme_mod('header_border', 200); //Get the border width
