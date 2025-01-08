@@ -56,7 +56,7 @@ function codelogix_customize_register($wp_customize){
 }
 
 
-//Apply the Custom Width to the Logo via CSS
+//Apply the Custom Width + Padding to the Logo via CSS
 function custom_logo_dynamic_css() {
    $logo_width = get_theme_mod('custom_logo_width', 200); // Get user-defined width
    $logo_padding = get_theme_mod('custom_logo_padding', 200); //Get user-defined padding
