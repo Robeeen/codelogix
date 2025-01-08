@@ -1,7 +1,7 @@
 <?php
 
 
-//Customize the Menu Font - 08.01.2025
+/* -----------------Customize the Menu Font Size ---------------------------------*/
 
 function custom_menu_font_size_customizer($wp_customize) {
     // Add a section for menu settings
@@ -31,7 +31,9 @@ function custom_menu_font_size_customizer($wp_customize) {
         ),
     ));
 
-    /*- Menu Items Space - */
+/*----------Customisze the Menu Items Space -------------------------------------------- */
+
+
     // Add setting for menu items space
     $wp_customize->add_setting('menu_space', array(
         'default'           => 3, // Default font size in pixels
