@@ -86,7 +86,7 @@ function codelogix_customize_header_color($wp_customize){
         'description' => __('Change Header Bckground.'),
         ]);
 
-    /* Paragraph text */
+    /* Header Background color settings */
     $wp_customize->add_setting( 'header_background', array(
         'default'           => '#444444',
         'sanitize_callback' => 'sanitize_hex_color'
@@ -98,15 +98,36 @@ function codelogix_customize_header_color($wp_customize){
         'priority' => 10
     ) ) );
 
+    /* -- Header Border Bottom settings -- */
+    $wp_customize->add_setting( 'header_border', array(
+        'default'       => 1,
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh'
+    ));
+
+    $wp_customize->add_control('header_border_control', array(
+        'label' => esc_html__( 'Header Border', 'codelogix'),
+        'section'   => 'codelogix_section',
+        'settings'  => 'header_border',
+        'type'     => 'number',
+        'input_attrs' => array(
+        'min'  => 0,  // Minimum width
+        'max'  => 10, // Maximum width
+        'step' => 1,  // Step value
+    ),
+    ));
+
 }
 
 //Apply the Custom Header Background COLOR via CSS
 function custom_header_color_css() {
     $background_color = get_theme_mod('header_background', 200); // Get user-defined width
+    $header_border = get_theme_mod('header_border', 200); //Get the border width
     ?>
     <style>
         #masthead {
-            background: <?php echo esc_attr($background_color);?>;            
+            background: <?php echo esc_attr($background_color);?>;  
+            border-bottom: <?php echo esc_attr($header_border);?>px solid #c2c2c2;          
         }
     </style>
     <?php
