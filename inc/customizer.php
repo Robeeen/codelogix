@@ -19,13 +19,6 @@ function codelogix_customize_register($wp_customize){
        'transport'         => 'refresh',
    ));
 
-    // Add setting for Padding top-bottom
-    $wp_customize->add_setting('custom_logo_padding', array(
-        'default'           => 5, // Default width
-        'sanitize_callback' => 'absint', // Ensure it's an integer
-        'transport'         => 'refresh',
-    ));
-
    // Add control (input field) for logo width
    $wp_customize->add_control('custom_logo_width_control', array(
        'label'    => __('Logo Width (px)', 'codelogix'),
@@ -38,6 +31,13 @@ function codelogix_customize_register($wp_customize){
            'step' => 10,  // Step value
        ),
    ));
+   
+    // Add setting for Padding top-bottom
+    $wp_customize->add_setting('custom_logo_padding', array(
+        'default'           => 5, // Default width
+        'sanitize_callback' => 'absint', // Ensure it's an integer
+        'transport'         => 'refresh',
+    ));
 
    // Add control (input field) for Paddding of Logo
    $wp_customize->add_control('custom_logo_padding_control', array(
@@ -83,7 +83,7 @@ function codelogix_customize_header_color($wp_customize){
     $wp_customize->add_section('codelogix_section', [
         'title'     =>  __( 'Header Background', 'codelogix' ),
         'priority'  =>  30,
-        'description' => __('Change Header Bckground.'),
+        'description' => __('Change Header Bckground and add border bottom.'),
         ]);
 
     /* Header Background color settings */
