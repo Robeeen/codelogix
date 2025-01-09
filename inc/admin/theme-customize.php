@@ -35,6 +35,8 @@ add_action('admin_init', 'theme_register_settings');
 
 function theme_register_settings() {
     register_setting('theme_settings_group', 'theme_fields');
+    register_setting('theme_settings_group', 'theme_fields1');
+    register_setting('theme_settings_group', 'theme_fields2');
     
     add_settings_section(
         'theme_main_section', 
@@ -42,22 +44,60 @@ function theme_register_settings() {
         null, 
         'theme_customization'
     );
-
+    //For theme_fields
     add_settings_field(
-        'theme_field_list', 
-        'Header Text', 
-        'theme_field_list_callback', 
+        'theme_fields', 
+        'Email Address:', 
+        'theme_field_callback', 
+        'theme_customization', 
+        'theme_main_section'
+    );
+    //For theme_fields1
+    add_settings_field(
+        'theme_fields1',
+        'Phone Number:',
+        'theme_field_callback1',
+        'theme_customization', 
+        'theme_main_section'
+    );
+    //For theme_fields2
+    add_settings_field(
+        'theme_fields2',
+        'Whats App:',
+        'theme_field_callback2',
         'theme_customization', 
         'theme_main_section'
     );
 }
 
-function theme_field_list_callback(){
+function theme_field_callback(){
     $value = get_option('theme_fields', []);
     ?>
      <div class='jumbotron'>
         
-        <input type="text" name="theme_fields" value="<?php echo $value; ?>" class="form-control" placeholder="Header Text" >
+        <input type="text" name="theme_fields" value="<?php echo $value; ?>" class="form-control" placeholder="Email" >
+
+    </div>
+<?php
+}
+
+function theme_field_callback1(){
+    $value = get_option('theme_fields1', []);
+    ?>
+     <div class='jumbotron'>
+        
+        <input type="text" name="theme_fields" value="<?php echo $value; ?>" class="form-control" placeholder="Phone" >
+
+    </div>
+<?php
+}
+
+function theme_field_callback2(){
+    $value = get_option('theme_fields2', []);
+    ?>
+     <div class='jumbotron'>
+        
+        <input type="text" name="theme_fields" value="<?php echo $value; ?>" class="form-control" placeholder="Whats App" >
 
     </div>
 <?php
