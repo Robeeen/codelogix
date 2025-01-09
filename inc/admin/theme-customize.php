@@ -10,6 +10,11 @@ function theme_create_menu() {
         'CodeLogix Theme Customize',         // Menu title
         'manage_options',      // Capability
         'theme_customization', // Menu slug
-        'theme_settings_page'    // Function to display the page content
+        'theme_settings_page',    // Function to display the page content
+        'dashicons-welcome-widgets-menus'
     );
+}
+
+function theme_settings_page(){
+    echo "hello";
 }
