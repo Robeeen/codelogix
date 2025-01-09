@@ -995,4 +995,9 @@ header{
 .top_left , .top_middle, .top_right{
 	width: 32%;
 }
+.top_section{
+	background: #92b5a9;   
+    text-align: center;
+}
+	
 
