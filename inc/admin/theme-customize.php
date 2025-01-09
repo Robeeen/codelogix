@@ -16,5 +16,48 @@ function theme_create_menu() {
 }
 
 function theme_settings_page(){
-    echo "hello";
+    ?>
+    <div class="wrap">
+        <h1><?php esc_html_e( 'Theme Customization Page' ); ?></h1>
+        <form method="post" action="options.php">
+            <?php
+                settings_fields('theme_settings_group');
+                do_settings_sections('theme_customization');                
+                submit_button();
+            ?>
+        </form>
+    </div>
+    <?php
+}
+
+// Register settings
+add_action('admin_init', 'theme_register_settings');
+
+function theme_register_settings() {
+    register_setting('theme_settings_group', 'theme_fields');
+    
+    add_settings_section(
+        'theme_main_section', 
+        '', 
+        null, 
+        'theme_customization'
+    );
+
+    add_settings_field(
+        'theme_field_list', 
+        '', 
+        'theme_field_list_callback', 
+        'theme_customization', 
+        'theme_main_section'
+    );
+}
+
+function theme_field_list_callback(){
+    ?>
+     <div class='jumbotron'>
+
+        <input type="text" class="form-control" placeholder="Header Text" >
+
+    </div>
+<?php
 }
