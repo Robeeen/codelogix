@@ -25,6 +25,11 @@
 <div id="page" class="site">
 
 	<header id="masthead" class="site-header">
+		<div class="top_section" style="display:flex";>
+			<div class="top_left">Email: <?php echo get_option('theme_fields');?></div>
+			<div class="top_middle">Phone: <?php echo get_option('theme_fields1');?></div>
+			<div class="top_right">WhatsApp: <?php echo get_option('theme_fields2');?></div>
+		</div>
 		<div class="the_header">
 			<div class="site-branding">
 				<?php
@@ -65,6 +70,6 @@
 
 					?>
 				</nav><!-- #site-navigation -->
-			</div><?php echo get_option('theme_fields');?>
+			</div>
 		</div>
 	</header><!-- #masthead -->

@@ -992,3 +992,7 @@ header{
 	float: right;
 }
 
+.top_left , .top_middle, .top_right{
+	width: 32%;
+}
+
