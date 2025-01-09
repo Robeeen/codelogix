@@ -62,8 +62,9 @@
 							'menu_id'        => 'primary-menu',
 						)
 					);
+
 					?>
 				</nav><!-- #site-navigation -->
-			</div>
+			</div><?php echo get_option('theme_fields');?>
 		</div>
 	</header><!-- #masthead -->

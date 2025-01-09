@@ -53,11 +53,11 @@ function theme_register_settings() {
 }
 
 function theme_field_list_callback(){
-    $value = get_option('theme_field_list', '');
+    $value = get_option('theme_fields', []);
     ?>
      <div class='jumbotron'>
         
-        <input type="text" name="theme_field_list" value="<?php echo esc_attr($value); ?>" class="form-control" placeholder="Header Text" >
+        <input type="text" name="theme_fields" value="<?php echo $value; ?>" class="form-control" placeholder="Header Text" >
 
     </div>
 <?php
