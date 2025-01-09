@@ -165,7 +165,7 @@ require get_template_directory() . '/inc/template-functions.php';
  */
 require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/menu-customizer.php';
-require get_template_directroy() . '/inc/admin/theme-customize.php';
+require get_template_directory() . '/inc/admin/theme-customize.php';
 
 function custom_header_widget_init() {
     register_sidebar(array(
