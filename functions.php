@@ -165,19 +165,18 @@ require get_template_directory() . '/inc/template-functions.php';
  */
 require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/menu-customizer.php';
+require get_template_directroy() . '/inc/admin/theme-customize.php';
 
+function custom_header_widget_init() {
+    register_sidebar(array(
+        'name'          => __('Header Widget', 'codelogix'),
+        'id'            => 'header-widget',
+        'before_widget' => '<div class="header-widget">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="widget-title">',
+        'after_title'   => '</h3>',
+    ));
+}
+add_action('widgets_init', 'custom_header_widget_init');
 
-
-
-/**
-	 * Section: Colours
-	 *
-	 * @param WP_Customize_Manager $wp_customize
-	 *
-	 * @access private
-	 * @since  1.0
-	 * @return void
-	 */
-
-	 
 	
