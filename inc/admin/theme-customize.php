@@ -78,7 +78,7 @@ function theme_register_settings() {
         'theme_main_section'
     );
 }
-
+//For theme_field Email
 function theme_field_callback(){
     $value = get_option('theme_fields', '');
     ?>
@@ -91,7 +91,7 @@ function theme_field_callback(){
     </div>
 <?php
 }
-
+//For theme_fields Phone
 function theme_field_callback1(){
     $value = get_option('theme_fields1', '');
     ?>
@@ -104,7 +104,7 @@ function theme_field_callback1(){
     </div>
 <?php
 }
-
+//For theme_fields WhatsApp
 function theme_field_callback2(){
     $value = get_option('theme_fields2', '');
     ?>
