@@ -36,14 +36,13 @@
 			<div class="top_right">WhatsApp: <?php echo get_option('theme_fields2');?></div>
 		</div>
 		<div class="the_header">
+			<!-- .site-branding -->
 			<div class="site-branding">
 				<?php
 				//Custom Logo - 01.07.2025 - https://developer.wordpress.org/themes/functionality/custom-logo/
 				if ( function_exists( 'the_custom_logo' ) ) {
 					the_custom_logo();
 				}
-
-
 
 				if ( is_front_page() && is_home() ) :
 					?>
@@ -60,8 +59,8 @@
 					<p class="site-description"><?php echo $codelogix_description;  ?></p>
 				<?php endif; ?>
 				
-			</div><!-- .site-branding -->
-			
+			</div>
+			<!-- #site-navigation -->
 			<div class="site-navigation">
 				<nav id="site-navigation" class="main-navigation">
 					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'codelogix' ); ?></button>
@@ -74,7 +73,11 @@
 					);
 
 					?>
-				</nav><!-- #site-navigation -->
+				</nav>
 			</div>
+			<!-- .site-buttons -->
+			 <div class="site-button">
+				<button>Call Me</button>
+			 </div>
 		</div>
 	</header><!-- #masthead -->

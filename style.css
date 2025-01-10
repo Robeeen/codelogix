@@ -984,8 +984,18 @@ header{
 	width: 30%;
 }
 .site-navigation{
-	width: 70%;
-	margin-top: 10px;
+	width: 60%;
+	margin-top: 20px;
+}
+.site-button{
+	width: 10%;
+}
+
+button{
+	background: #2c2e30;
+    color: rgb(255 255 255 / 80%);
+    padding: 0.6em 2em 0.8em;
+    margin-top: 17px;
 }
 .main-navigation{
 	display: flex;
