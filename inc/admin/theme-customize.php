@@ -118,9 +118,16 @@ function theme_field_callback2(){
 <?php
 }
 
+//Function for Color Picker to change background of Header Top.
 function custom_bg_color_callback() {
     $color = get_option('custom_bg_color', '#ffffff'); // Default to white
-    echo '<input type="text" id="custom_bg_color" name="custom_bg_color" value="' . esc_attr($color) . '" class="custom-color-field" />';
+    ?>
+    <input type="text" 
+    id="custom_bg_color" 
+    name="custom_bg_color" 
+    value="<?php echo esc_attr($color);?>"
+    class="custom-color-field" />';
+<?php
 }
 
 
