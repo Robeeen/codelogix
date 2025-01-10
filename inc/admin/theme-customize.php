@@ -39,6 +39,7 @@ function theme_register_settings() {
     register_setting('theme_settings_group', 'theme_fields2');
     register_setting('theme_settings_group', 'custom_bg_color'); 
     register_setting('theme_settings_group', 'custom_font_color'); 
+    register_setting('theme_settings_group', 'custom_font_size');
     
     add_settings_section(
         'theme_main_section', 
@@ -83,6 +84,14 @@ function theme_register_settings() {
         'custom_font_color',
         'Font Color',
         'custom_font_color_callback',
+        'theme_customization',
+        'theme_main_section'
+    );
+    //For Custom Font Size 
+    add_settings_field(
+        'custom_font_size',
+        'Font Size',
+        'custom_font_size_callback',
         'theme_customization',
         'theme_main_section'
     );
@@ -139,7 +148,7 @@ function custom_bg_color_callback() {
 <?php
 }
 
-//
+//Function for Color Picker to change Font-Color of Header Top.
 function custom_font_color_callback(){
     $color = get_option('custom_font_color', '#ffffff'); // Default to white
     ?>
@@ -148,6 +157,18 @@ function custom_font_color_callback(){
     name="custom_font_color" 
     value="<?php echo esc_attr($color);?>"
     class="custom-color-field" /><!-----This 'custom-color-field' class generate Color Picker-->
+<?php
+
+}
+
+//Function for Color Picker to change Font-Size of Header Top.
+function custom_font_size_callback(){
+    $color = get_option('custom_font_size', ''); // Default to white
+    ?>
+    <input type="number" 
+    id="custom_font_size" 
+    name="custom_font_size" 
+    value="<?php echo esc_attr($color);?>"    
 <?php
 
 }
