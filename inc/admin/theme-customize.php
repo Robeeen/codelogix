@@ -1,6 +1,5 @@
 <?php
 
-
 // Hook to add a new admin menu for Theme Customisation - 09.01.2025
 add_action('admin_menu', 'theme_create_menu');
 
@@ -19,6 +18,7 @@ function theme_settings_page(){
     ?>
     <div class="wrap">
         <h1><?php esc_html_e( 'Theme Customization Page' ); ?></h1>
+        <h3><?php esc_html_e( 'Settings for Top Navbar' ); ?></h3>
         <form method="post" action="options.php">
             <?php
                 settings_fields('theme_settings_group');
@@ -126,7 +126,7 @@ function custom_bg_color_callback() {
     id="custom_bg_color" 
     name="custom_bg_color" 
     value="<?php echo esc_attr($color);?>"
-    class="custom-color-field" />
+    class="custom-color-field" /><!-----This 'custom-color-field' class generate Color Picker-->
 <?php
 }
 

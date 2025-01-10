@@ -180,6 +180,7 @@ function custom_header_widget_init() {
 add_action('widgets_init', 'custom_header_widget_init');
 
 
+//Color Picker Enquing for Top Navbar - Background Color.
 function custom_admin_enqueue_scripts($hook) {
     if (strpos($hook, 'theme_customization') !== false) { // Ensure it's only loaded on your settings page
         wp_enqueue_style('wp-color-picker');
