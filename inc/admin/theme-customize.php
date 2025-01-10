@@ -38,6 +38,7 @@ function theme_register_settings() {
     register_setting('theme_settings_group', 'theme_fields1');
     register_setting('theme_settings_group', 'theme_fields2');
     register_setting('theme_settings_group', 'custom_bg_color'); 
+    register_setting('theme_settings_group', 'custom_font_color'); 
     
     add_settings_section(
         'theme_main_section', 
@@ -74,6 +75,14 @@ function theme_register_settings() {
         'custom_bg_color',
         'Background Color',
         'custom_bg_color_callback',
+        'theme_customization',
+        'theme_main_section'
+    );
+    //For Custom Font color 
+    add_settings_field(
+        'custom_font_color',
+        'Font Color',
+        'custom_font_color_callback',
         'theme_customization',
         'theme_main_section'
     );
@@ -128,6 +137,19 @@ function custom_bg_color_callback() {
     value="<?php echo esc_attr($color);?>"
     class="custom-color-field" /><!-----This 'custom-color-field' class generate Color Picker-->
 <?php
+}
+
+//
+function custom_font_color_callback(){
+    $color = get_option('custom_font_color', '#ffffff'); // Default to white
+    ?>
+    <input type="text" 
+    id="custom_font_color" 
+    name="custom_font_color" 
+    value="<?php echo esc_attr($color);?>"
+    class="custom-color-field" /><!-----This 'custom-color-field' class generate Color Picker-->
+<?php
+
 }
 
 
