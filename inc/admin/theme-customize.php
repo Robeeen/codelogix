@@ -37,6 +37,7 @@ function theme_register_settings() {
     register_setting('theme_settings_group', 'theme_fields');
     register_setting('theme_settings_group', 'theme_fields1');
     register_setting('theme_settings_group', 'theme_fields2');
+    register_setting('theme_settings_group', 'custom_bg_color'); 
     
     add_settings_section(
         'theme_main_section', 
@@ -68,6 +69,14 @@ function theme_register_settings() {
         'theme_customization', 
         'theme_main_section'
     );
+    //For Custom BG color 
+    add_settings_field(
+        'custom_bg_color',
+        'Background Color',
+        'custom_bg_color_callback',
+        'theme_customization',
+        'theme_main_section'
+    );
 }
 
 function theme_field_callback(){
@@ -76,7 +85,7 @@ function theme_field_callback(){
      <div class='jumbotron'>        
         <input type="text" 
         name="theme_fields" 
-        value="<?php echo $value; ?>" 
+        value="<?php echo esc_attr($value); ?>" 
         class="form-control" 
         placeholder="Email" />
     </div>
@@ -89,7 +98,7 @@ function theme_field_callback1(){
      <div class='jumbotron'>        
         <input type="text" 
         name="theme_fields1" 
-        value="<?php echo $value; ?>" 
+        value="<?php echo esc_attr($value); ?>" 
         class="form-control" 
         placeholder="Phone" />
     </div>
@@ -102,9 +111,18 @@ function theme_field_callback2(){
      <div class='jumbotron'>        
         <input type="text"
          name="theme_fields2"
-         value="<?php echo $value; ?>"
+         value="<?php echo esc_attr($value); ?>"
          class="form-control"
          placeholder="Whats App" />
     </div>
 <?php
 }
+
+function custom_bg_color_callback() {
+    $color = get_option('custom_bg_color', '#ffffff'); // Default to white
+    echo '<input type="text" id="custom_bg_color" name="custom_bg_color" value="' . esc_attr($color) . '" class="custom-color-field" />';
+}
+
+
+
+
