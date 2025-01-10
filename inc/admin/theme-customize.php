@@ -126,7 +126,7 @@ function custom_bg_color_callback() {
     id="custom_bg_color" 
     name="custom_bg_color" 
     value="<?php echo esc_attr($color);?>"
-    class="custom-color-field" />';
+    class="custom-color-field" />
 <?php
 }
 
