@@ -181,10 +181,10 @@ add_action('widgets_init', 'custom_header_widget_init');
 
 
 function custom_admin_enqueue_scripts($hook) {
-    if ($hook === 'theme_customization') { // Ensure it's only loaded on your settings page
+    if (strpos($hook, 'theme_customization') !== false) { // Ensure it's only loaded on your settings page
         wp_enqueue_style('wp-color-picker');
-        wp_enqueue_script('custom-color-picker', get_template_directory() . '/inc/admin/js/custom-color-picker.js', array('wp-color-picker'), false, true);
-    }
+        wp_enqueue_script('custom-color-picker', get_template_directory_uri() . '/inc/admin/js/custom-color-picker.js', array('wp-color-picker'), false, true);
+   }
 }
 add_action('admin_enqueue_scripts', 'custom_admin_enqueue_scripts');
 
