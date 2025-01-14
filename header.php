@@ -32,10 +32,18 @@
 		color:<?php echo get_option('custom_font_color');?>;
 		font-size:<?php echo get_option('custom_font_size');?>px">
 			<div class="inner_top_section">
-				<div class="top_left">Email: <?php echo get_option('theme_fields');?></div>
-				<div class="top_middle">Phone: <?php echo get_option('theme_fields1');?></div>
-				<div class="top_right">WhatsApp: <?php echo get_option('theme_fields2');?></div>
-				<div class="top_social">Social Icons</div>
+				<div class="top_left"><i class="fa fa-envelope"></i> <?php echo get_option('theme_fields');?></div>
+				<div class="top_middle"><i class="fa fa-phone"></i> <?php echo get_option('theme_fields1');?></div>
+				<div class="top_right"><i class="fab fa-whatsapp"></i> <?php echo get_option('theme_fields2');?></div>
+				<div class="top_social"> 
+					<i class="fab fa-github"></i>
+					<i class="fab fa-wordpress"></i>
+					<i class="fab fa-youtube"></i>
+					<i class="fab fa-facebook"></i>
+                    <i class="fab fa-linkedin"></i>
+					<i class="fab fa-whatsapp"></i>   
+
+				</div>
 			</div>
 		</div>	
 		<div class="the_header">

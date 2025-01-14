@@ -135,10 +135,11 @@ add_action( 'widgets_init', 'codelogix_widgets_init' );
  */
 function codelogix_scripts() {
 	wp_enqueue_style( 'codelogix-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( 'load-fa', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css' );
 	wp_style_add_data( 'codelogix-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'codelogix-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
+	
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
