@@ -35,6 +35,7 @@
 				<div class="top_left">Email: <?php echo get_option('theme_fields');?></div>
 				<div class="top_middle">Phone: <?php echo get_option('theme_fields1');?></div>
 				<div class="top_right">WhatsApp: <?php echo get_option('theme_fields2');?></div>
+				<div class="top_social">Social Icons</div>
 			</div>
 		</div>	
 		<div class="the_header">
