@@ -36,11 +36,11 @@
 				<div class="top_middle"><i class="fa fa-phone"></i> <?php echo get_option('theme_fields1');?></div>
 				<div class="top_right"><i class="fab fa-whatsapp"></i> <?php echo get_option('theme_fields2');?></div>
 				<div class="top_social"> 
-				<i class="fab fa-linkedin"></i>
+					<i class="fab fa-linkedin-in"></i>
 					<i class="fab fa-youtube"></i> 
-					<i class="fab fa-facebook"></i> 
-                      
-
+					<i class="fab fa-facebook-f"></i> 
+					<i class="fab fa-twitter" aria-hidden="true"></i>
+					<i class="fab fa-skype" aria-hidden="true"></i>             
 				</div>
 			</div>
 		</div>	

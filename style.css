@@ -1012,6 +1012,7 @@ button{
 .top_section{
 	background: #92b5a9;   
     text-align: center;
+	padding: 3px 0px;
 }
 .inner_top_section
 {
@@ -1023,5 +1024,8 @@ button{
 .top_social{
 	text-align: right;
 	width: 60%;
+}
+.top_social i{
+	margin-right: 5px;
 }
 
