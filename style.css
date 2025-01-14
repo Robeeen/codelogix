@@ -1003,11 +1003,17 @@ button{
 }
 
 .top_left , .top_middle, .top_right{
-	width: 32%;
+	width: 15%;
 }
 .top_section{
 	background: #92b5a9;   
     text-align: center;
 }
-	
+.inner_top_section
+{
+	display: flex;
+	text-align: left;
+	margin: 0 auto;
+	width: 90%;
+}	
 

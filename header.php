@@ -25,16 +25,18 @@
 <div id="page" class="site">
 
 	<header id="masthead" class="site-header">
+		<!---Top Section has controll from Dashboard admin panel. ----->
 		<div class="top_section" 
 		style="display:flex; 
 		background:<?php echo get_option('custom_bg_color');?>; 
 		color:<?php echo get_option('custom_font_color');?>;
 		font-size:<?php echo get_option('custom_font_size');?>px">
-
-			<div class="top_left">Email: <?php echo get_option('theme_fields');?></div>
-			<div class="top_middle">Phone: <?php echo get_option('theme_fields1');?></div>
-			<div class="top_right">WhatsApp: <?php echo get_option('theme_fields2');?></div>
-		</div>
+			<div class="inner_top_section">
+				<div class="top_left">Email: <?php echo get_option('theme_fields');?></div>
+				<div class="top_middle">Phone: <?php echo get_option('theme_fields1');?></div>
+				<div class="top_right">WhatsApp: <?php echo get_option('theme_fields2');?></div>
+			</div>
+		</div>	
 		<div class="the_header">
 			<!-- .site-branding -->
 			<div class="site-branding">
