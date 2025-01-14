@@ -135,16 +135,16 @@ add_action( 'widgets_init', 'codelogix_widgets_init' );
  */
 function codelogix_scripts() {
 	wp_enqueue_style( 'codelogix-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_enqueue_style( 'load-fa', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css' );
 	wp_style_add_data( 'codelogix-style', 'rtl', 'replace' );
-
+	wp_enqueue_style( 'load-fa', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css' );
 	wp_enqueue_script( 'codelogix-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-	
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'codelogix_scripts' );
+
 
 /**
  * Implement the Custom Header feature.
@@ -185,10 +185,15 @@ add_action('widgets_init', 'custom_header_widget_init');
 function custom_admin_enqueue_scripts($hook) {
     if (strpos($hook, 'theme_customization') !== false) { // Ensure it's only loaded on your settings page
         wp_enqueue_style('wp-color-picker');
+		wp_enqueue_script('my-customizer-tabs-js', get_template_directory_uri() . '/js/customizer.js', array('jquery'), false, true);
+
         wp_enqueue_script('custom-color-picker', get_template_directory_uri() . '/inc/admin/js/custom-color-picker.js', array('wp-color-picker'), false, true);
    }
 }
 add_action('admin_enqueue_scripts', 'custom_admin_enqueue_scripts');
+
+
+
 
 
 	

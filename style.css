@@ -1029,3 +1029,31 @@ button{
 	margin-right: 5px;
 }
 
+
+
+.customizer-tabs {
+    display: flex;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.customizer-tabs a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.customizer-tabs a.active {
+    border-bottom: 2px solid #0073aa;
+    color: #0073aa;
+}
+
+.customizer-tab-content {
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
+
