@@ -41,6 +41,7 @@ function theme_register_settings() {
     register_setting('theme_settings_group', 'custom_font_color'); 
     register_setting('theme_settings_group', 'custom_font_size');
     register_setting('theme_settings_group', 'custom_top_bar_height');
+    register_setting('theme_settings_group', 'top_social_color');
     
     add_settings_section(
         'theme_main_section', 
@@ -101,6 +102,14 @@ function theme_register_settings() {
         'custom_top_bar_height',
         'Top Nav Height',
         'custom_top_nav_callback',
+        'theme_customization',
+        'theme_main_section'
+    );
+    //For Top Social Icons Color
+    add_settings_field(
+        'top_social_color',
+        'Top Nav Social Icon Color',
+        'top_social_color_callback',
         'theme_customization',
         'theme_main_section'
     );
@@ -194,6 +203,29 @@ function custom_top_nav_callback(){
 
 }
 
+//Top Nav Social Icons Color settings:
+function top_social_color_callback(){
+    $color = get_option('top_social_color', '#ffffff');
+    ?>
+    <input type="number" 
+    id="top_social_color" 
+    name="top_social_color" 
+    value="<?php echo esc_attr($color);?>"
+    class="custom-color-field" />   
+<?php
+}
+
+add_action('wp_head', 'display_top_social_color');
+function display_top_social_color(){
+    $social_color = get_theme_mod('top_social_color'); // Get user-defined Color
+    ?>
+   <style>
+       .top_social {
+           color: <?php echo esc_attr($social_color); ?>;           
+       }
+   </style>
+   <?php
+}
 
 
 
