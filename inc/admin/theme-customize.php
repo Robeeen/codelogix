@@ -207,17 +207,17 @@ function custom_top_nav_callback(){
 function top_social_color_callback(){
     $color = get_option('top_social_color', '#ffffff');
     ?>
-    <input type="number" 
+    <input type="text" 
     id="top_social_color" 
     name="top_social_color" 
     value="<?php echo esc_attr($color);?>"
     class="custom-color-field" />   
 <?php
 }
-
+//Function to create CSS for Social Color Settings
 add_action('wp_head', 'display_top_social_color');
 function display_top_social_color(){
-    $social_color = get_theme_mod('top_social_color'); // Get user-defined Color
+    $social_color = get_option('top_social_color'); // Get user-defined Color
     ?>
    <style>
        .top_social {
