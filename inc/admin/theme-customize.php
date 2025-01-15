@@ -179,18 +179,20 @@ function custom_font_color_callback(){
 
 }
 
+/*****************************************************************************/
+
 //Function for Color Picker to change Font-Size of Header Top.
 function custom_font_size_callback(){
-    $color = get_option('custom_font_size', ''); 
+    $font_size = get_option('custom_font_size', ''); 
     ?>
     <input type="number" 
     id="custom_font_size" 
     name="custom_font_size" 
-    value="<?php echo esc_attr($color);?>" /> 
+    value="<?php echo esc_attr($font_size);?>" /> 
 <?php
-
 }
 
+/*****************************************************************************/
 //Function for Top Nav Bar Size - height control
 function custom_top_nav_callback(){
     $size = get_option('custom_top_bar_height', '');
@@ -200,9 +202,29 @@ function custom_top_nav_callback(){
     name="custom_top_bar_height" 
     value="<?php echo esc_attr($size);?>" />   
 <?php
-
 }
 
+//Function to create CSS for Nav Bar height control
+add_action('wp_head', 'display_top_bar_height');
+function display_top_bar_height(){
+    $social_color = get_option('custom_top_bar_height'); // Get user-defined Color
+    $font_size = get_option('custom_font_size');//Get the user-defind font-size
+    $font_color = get_option('custom_font_color'); //Get the font color
+    $background = get_option('custom_bg_color'); // Get the background color
+
+    ?>
+   <style>
+       .top_section {
+           padding: <?php echo esc_attr($social_color); ?>px 0px;    
+           font-size: <?php echo esc_attr($font_size); ?>px;
+           color:<?php echo esc_attr($font_color);?>;
+           background:<?php echo esc_attr($background);?>; 
+       }
+   </style>
+   <?php
+}
+
+/*****************************************************************************/
 //Top Nav Social Icons Color settings:
 function top_social_color_callback(){
     $color = get_option('top_social_color', '#ffffff');

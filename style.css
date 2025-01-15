@@ -1009,10 +1009,9 @@ button{
 .top_left , .top_middle, .top_right{
 	width: 15%;
 }
-.top_section{
-	background: #92b5a9;   
+.top_section{   
     text-align: center;
-	
+	display:flex;	
 }
 .inner_top_section
 {

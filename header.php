@@ -26,13 +26,7 @@
 
 	<header id="masthead" class="site-header">
 		<!---Top Section has controll from Dashboard admin panel. ----->
-		<div class="top_section" 
-		style="display:flex; 
-		background:<?php echo get_option('custom_bg_color');?>; 
-		color:<?php echo get_option('custom_font_color');?>;
-		font-size:<?php echo get_option('custom_font_size');?>px;
-		padding: <?php echo get_option('custom_top_bar_height');?>px;"
-		>
+		<div class="top_section">
 			<div class="inner_top_section">
 				<div class="top_left"><i class="fa fa-envelope"></i> <?php echo get_option('theme_fields');?></div>
 				<div class="top_middle"><i class="fa fa-phone"></i> <?php echo get_option('theme_fields1');?></div>
