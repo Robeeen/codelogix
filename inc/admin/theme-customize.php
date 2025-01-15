@@ -1,6 +1,6 @@
 <?php
 
-// Hook to add a new admin menu for Theme Customisation - 09.01.2025
+// Hook to add a new admin menu for Theme Customisation Top Nav Bar- 09.01.2025
 add_action('admin_menu', 'theme_create_menu');
 
 function theme_create_menu() {
@@ -40,6 +40,7 @@ function theme_register_settings() {
     register_setting('theme_settings_group', 'custom_bg_color'); 
     register_setting('theme_settings_group', 'custom_font_color'); 
     register_setting('theme_settings_group', 'custom_font_size');
+    register_setting('theme_settings_group', 'custom_top_bar_height');
     
     add_settings_section(
         'theme_main_section', 
@@ -92,6 +93,14 @@ function theme_register_settings() {
         'custom_font_size',
         'Font Size',
         'custom_font_size_callback',
+        'theme_customization',
+        'theme_main_section'
+    );
+    //For Top Nav Height
+    add_settings_field(
+        'custom_top_bar_height',
+        'Top Nav Height',
+        'custom_top_nav_callback',
         'theme_customization',
         'theme_main_section'
     );
@@ -171,6 +180,11 @@ function custom_font_size_callback(){
     value="<?php echo esc_attr($color);?>"    
 <?php
 
+}
+
+//Function for Top Nav Bar Size - height control
+function custom_top_nav_callback(){
+    
 }
 
 
