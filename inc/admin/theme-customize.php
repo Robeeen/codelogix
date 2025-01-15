@@ -73,6 +73,22 @@ function theme_register_settings() {
         'theme_customization', 
         'theme_main_section'
     );
+        //For Custom Font Size 
+        add_settings_field(
+            'custom_font_size',
+            'Font Size',
+            'custom_font_size_callback',
+            'theme_customization',
+            'theme_main_section'
+        );
+        //For Top Nav Height
+        add_settings_field(
+            'custom_top_bar_height',
+            'Top Nav Height',
+            'custom_top_nav_callback',
+            'theme_customization',
+            'theme_main_section'
+        );
     //For Custom BG color 
     add_settings_field(
         'custom_bg_color',
@@ -89,22 +105,7 @@ function theme_register_settings() {
         'theme_customization',
         'theme_main_section'
     );
-    //For Custom Font Size 
-    add_settings_field(
-        'custom_font_size',
-        'Font Size',
-        'custom_font_size_callback',
-        'theme_customization',
-        'theme_main_section'
-    );
-    //For Top Nav Height
-    add_settings_field(
-        'custom_top_bar_height',
-        'Top Nav Height',
-        'custom_top_nav_callback',
-        'theme_customization',
-        'theme_main_section'
-    );
+
     //For Top Social Icons Color
     add_settings_field(
         'top_social_color',
@@ -204,27 +205,6 @@ function custom_top_nav_callback(){
 <?php
 }
 
-//Function to create CSS for Nav Bar height control
-add_action('wp_head', 'display_top_bar_height');
-function display_top_bar_height(){
-    $social_color = get_option('custom_top_bar_height'); // Get user-defined Color
-    $font_size = get_option('custom_font_size');//Get the user-defind font-size
-    $font_color = get_option('custom_font_color'); //Get the font color
-    $background = get_option('custom_bg_color'); // Get the background color
-
-    ?>
-   <style>
-       .top_section {
-           padding: <?php echo esc_attr($social_color); ?>px 0px;    
-           font-size: <?php echo esc_attr($font_size); ?>px;
-           color:<?php echo esc_attr($font_color);?>;
-           background:<?php echo esc_attr($background);?>; 
-       }
-   </style>
-   <?php
-}
-
-/*****************************************************************************/
 //Top Nav Social Icons Color settings:
 function top_social_color_callback(){
     $color = get_option('top_social_color', '#ffffff');
@@ -236,18 +216,33 @@ function top_social_color_callback(){
     class="custom-color-field" />   
 <?php
 }
-//Function to create CSS for Social Color Settings
-add_action('wp_head', 'display_top_social_color');
-function display_top_social_color(){
-    $social_color = get_option('top_social_color'); // Get user-defined Color
+
+//Function to create CSS for Nav Bar height control
+add_action('wp_head', 'display_top_bar_height');
+function display_top_bar_height(){
+    $height         = get_option('custom_top_bar_height'); // Get user-defined Color
+    $font_size      = get_option('custom_font_size');//Get the user-defind font-size
+    $font_color     = get_option('custom_font_color'); //Get the font color
+    $background     = get_option('custom_bg_color'); // Get the background color
+    $social_color   = get_option('top_social_color'); // Get user-defined Color
     ?>
    <style>
+       .top_section {
+           padding: <?php echo esc_attr($height); ?>px 0px;    
+           font-size: <?php echo esc_attr($font_size); ?>px;
+           color:<?php echo esc_attr($font_color);?>;
+           background:<?php echo esc_attr($background);?>; 
+       }
        .top_social {
            color: <?php echo esc_attr($social_color); ?>;           
        }
    </style>
    <?php
 }
+
+/*****************************************************************************/
+
+//Function to create CSS for Social Color Settings
 
 
 
