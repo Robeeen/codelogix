@@ -201,8 +201,6 @@ function theme_register_settings() {
     
 }
 
-
-
 /************************************ ALL CALLBACK FUNCTIONS *****************************/
 //For theme_field Email
 function theme_field_callback(){
@@ -377,9 +375,9 @@ function display_top_bar_height(){
     $social_color   = get_option('top_social_color'); // Get user-defined Color
     $logo_width     = get_option('custom_logo_size', 100); // Get user-defined width
     $logo_padding   = get_option('custom_logo_padding'); //Get user-defined padding
-    $header_backgrd = get_option('custom_header_background'); //Get user-defined padding
-    $header_border  = get_option('header_border_bottom'); //Get user-defined padding
-    $border_background  = get_option('border_background'); //Get user-defined padding
+    $header_backgrd = get_option('custom_header_background'); //Get user-defined background
+    $header_border  = get_option('header_border_bottom'); //Get user-defined border bottom
+    $border_background  = get_option('border_background'); //Get user-defined color
     
     ?>
    <style>
