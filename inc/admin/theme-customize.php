@@ -172,19 +172,26 @@ function custom_font_color_callback(){
 
 //Function for Color Picker to change Font-Size of Header Top.
 function custom_font_size_callback(){
-    $color = get_option('custom_font_size', ''); // Default to white
+    $color = get_option('custom_font_size', ''); 
     ?>
     <input type="number" 
     id="custom_font_size" 
     name="custom_font_size" 
-    value="<?php echo esc_attr($color);?>"    
+    value="<?php echo esc_attr($color);?>" /> 
 <?php
 
 }
 
 //Function for Top Nav Bar Size - height control
 function custom_top_nav_callback(){
-    
+    $size = get_option('custom_top_bar_height', '');
+    ?>
+    <input type="number" 
+    id="custom_top_bar_height" 
+    name="custom_top_bar_height" 
+    value="<?php echo esc_attr($size);?>" />   
+<?php
+
 }
 
 
