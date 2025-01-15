@@ -164,7 +164,7 @@ require get_template_directory() . '/inc/template-functions.php';
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+//require get_template_directory() . '/inc/customizer.php'; //(ALL Good but not calling due to Add Menu Pages have all that)
 require get_template_directory() . '/inc/menu-customizer.php';
 require get_template_directory() . '/inc/admin/theme-customize.php';
 
