@@ -294,57 +294,58 @@ function top_social_color_callback(){
     class="custom-color-field" />   
 <?php
 }
+
+//**************Main Header Section**********//
 //Header Logo Size - Width Control
 function theme_logo_callback(){
     $value = get_option('custom_logo_size', '100');
     ?>
-     <div class='jumbotron'>        
+            
         <input type="number" 
         name="custom_logo_size" 
         value="<?php echo esc_attr($value); ?>" 
         class="form-control" 
         placeholder="Logo Size" />
-    </div>
+   
 <?php
 }
 //Header Logo Padding 
 function theme_logo_padding_callback(){
     $value = get_option('custom_logo_padding', '');
-    ?>
-     <div class='jumbotron'>        
+    ?>      
         <input type="number" 
         name="custom_logo_padding" 
         value="<?php echo esc_attr($value); ?>" 
         class="form-control" 
         placeholder="Logo Size" />
-    </div>
+   
 <?php
 }
 //Header BackGround Color
 function theme_header_background_color_callback(){
     $value = get_option('custom_header_background', '');
     ?>
-     <div class='jumbotron'>        
+             
         <input type="text" 
         id="custom_header_background"
         name="custom_header_background" 
         value="<?php echo esc_attr($value);?>" 
         class="custom-color-field" 
          />
-    </div>
+    
 <?php
 }
 //Header Border Bottom
 function theme_header_border_bottom_callback(){
     $value = get_option('header_border_bottom', '');
     ?>
-     <div class='jumbotron'>        
+             
         <input type="number"         
         name="header_border_bottom" 
         value="<?php echo esc_attr($value);?>" 
         class="form-control" 
         placeholder="Border Bottom" />
-    </div>
+   
 <?php
 }
 
@@ -352,14 +353,14 @@ function theme_header_border_bottom_callback(){
 function theme_border_background_callback(){
     $value = get_option('border_background', '#ffffff');
     ?>
-     <div class='jumbotron'>        
+            
         <input type="text" 
         id="border_background"        
         name="border_background" 
         value="<?php echo esc_attr($value);?>" 
         class="custom-color-field" 
          />
-    </div>
+    
 <?php
 }
 
