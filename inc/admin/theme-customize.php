@@ -84,6 +84,8 @@ function theme_register_settings() {
     register_setting('advanced_settings_group', 'custom_header_background');
     register_setting('advanced_settings_group', 'header_border_bottom');
     register_setting('advanced_settings_group', 'border_background');
+    register_setting('advanced_settings_group', 'button_text');
+    register_setting('advanced_settings_group', 'menu_font_size');
     
 
     add_settings_section(
@@ -243,6 +245,24 @@ function theme_register_settings() {
         'border_background', 
         'Border Background:', 
         'theme_border_background_callback', 
+        'advanced_settings', 
+        'advanced_section'
+    );
+    
+    //For Header Button Text - dynamic
+      add_settings_field(
+        'button_text', 
+        'Button Text:', 
+        'button_text_callback', 
+        'advanced_settings', 
+        'advanced_section'
+    );
+
+    //For Header Button Text - dynamic
+      add_settings_field(
+        'menu_font_size', 
+        'Nav Menu Font Size', 
+        'menu_font_size_callback', 
         'advanced_settings', 
         'advanced_section'
     );
@@ -463,6 +483,34 @@ function theme_border_background_callback(){
 <?php
 }
 
+//header Border Bottom Color
+function button_text_callback(){
+    $value = get_option('button_text', '');
+    ?>
+            
+        <input type="text"        
+        name="button_text" 
+        value="<?php echo esc_attr($value);?>" 
+        class="form-control" 
+        placeholder="Button Text"
+         />    
+<?php
+}
+
+//header NAV Menu Font Size
+function menu_font_size_callback(){
+    $value = get_option('menu_font_size', '');
+    ?>
+            
+        <input type="number"        
+        name="menu_font_size" 
+        value="<?php echo esc_attr($value);?>" 
+        class="form-control" 
+        placeholder="Font Size"
+         />    
+<?php
+}
+
 
 /************************************* ALL DYNAMIC STYLE - CSS***************************/
 //Function to create CSS for Nav Bar 
@@ -478,6 +526,7 @@ function display_top_bar_height(){
     $header_backgrd = get_option('custom_header_background'); //Get user-defined background
     $header_border  = get_option('header_border_bottom'); //Get user-defined border bottom
     $border_backgr  = get_option('border_background'); //Get user-defined color
+    $nav_font_size  = get_option('menu_font_size'); //Get Main Menu Font size
     
     ?>
    <style>
@@ -506,6 +555,10 @@ function display_top_bar_height(){
            background:<?php echo esc_attr($header_backgrd);?>; 
            border-bottom:<?php echo esc_attr($header_border);?>px solid <?php echo esc_attr($border_backgr);?>; 
        }
+       .main-navigation a, 
+        .menu-primary-menu-container ul li a {
+            font-size: <?php echo esc_attr($nav_font_size); ?>px;
+        }
    </style>
    <?php
 }

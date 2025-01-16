@@ -161,7 +161,7 @@
 			</div>
 			<!-- .site-buttons -->
 			 <div class="site-button">
-				<button>Call Me</button>
+				<button><?php echo get_option('button_text');?></button>
 			 </div>
 		</div>
 	</header><!-- #masthead -->
