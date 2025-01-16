@@ -477,7 +477,7 @@ function display_top_bar_height(){
     $logo_padding   = get_option('custom_logo_padding'); //Get user-defined padding
     $header_backgrd = get_option('custom_header_background'); //Get user-defined background
     $header_border  = get_option('header_border_bottom'); //Get user-defined border bottom
-    $border_background  = get_option('border_background'); //Get user-defined color
+    $border_backgr  = get_option('border_background'); //Get user-defined color
     
     ?>
    <style>
@@ -491,7 +491,7 @@ function display_top_bar_height(){
            color: <?php echo esc_attr($social_color);?>;           
        }
        .top_social a:link, a:hover, a:visited, a:active{
-           color: <?php echo esc_attr($social_color);?>;      
+           color: <?php echo esc_attr($social_color);?> !important;      
        }
        .custom-logo {
            max-width: <?php echo esc_attr($logo_width);?>px;
@@ -501,7 +501,7 @@ function display_top_bar_height(){
        }
        #masthead{
            background:<?php echo esc_attr($header_backgrd);?>; 
-           border-bottom:<?php echo esc_attr($header_border);?>px solid <?php echo esc_attr($border_background);?>; 
+           border-bottom:<?php echo esc_attr($header_border);?>px solid <?php echo esc_attr($border_backgr);?>; 
        }
    </style>
    <?php

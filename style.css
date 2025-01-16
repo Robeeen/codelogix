@@ -1056,3 +1056,10 @@ button{
     border-radius: 5px;
 }
 
+.dont_show{
+	display: none;
+}
+
+.site-navigation ul li a:link, a:hover, a:visited, a:active {
+	color: black !important;
+}

@@ -44,12 +44,25 @@
 				</div>
 
 				<div class="top_social"> 
-					<a href="https://<?php echo get_option('fb_link');?>" target="_new"><i class="fab fa-linkedin-in"></i></a>
-					<i class="fab fa-youtube"></i> 
-					<i class="fab fa-facebook-f"></i> 
-					<i class="fab fa-twitter"></i>
-					<i class="fab fa-skype"></i>             
+					<a href="https://<?php echo get_option('linkedin_link');?>" target="_new" class="dont_show"><i class="fab fa-linkedin-in"></i></a>
+					<a href="https://<?php echo get_option('tube_link');?>" target="_new" class="dont_show"><i class="fab fa-youtube"></i></a> 
+					<a href="https://<?php echo get_option('fb_link');?>" target="_new" class="dont_show"><i class="fab fa-facebook-f"></i></a> 
+					<a href="https://<?php echo get_option('twiter_link');?>" target="_new" class="dont_show"><i class="fab fa-twitter"></i></a>
+					<a href="https://<?php echo get_option('skype_link');?>" target="_new" class="dont_show"><i class="fab fa-skype"></i></a>             
 				</div>
+				<?php
+					if(get_option('linkedin_link')){
+						echo '<style>
+							.dont_show{
+							display: inline;
+							}
+						
+						
+						</style>';
+					}
+
+
+				?>
 			</div>
 		</div>	
 		<div class="the_header">
