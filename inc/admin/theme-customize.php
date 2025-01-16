@@ -490,8 +490,11 @@ function display_top_bar_height(){
        .top_social {
            color: <?php echo esc_attr($social_color);?>;           
        }
-       .top_social a:link, a:hover, a:visited, a:active{
-           color: <?php echo esc_attr($social_color);?> !important;      
+       .top_social a:link, a:hover, a:active{
+           color: <?php echo esc_attr($social_color);?>;      
+       }
+       .top_social a:visited{
+           color: <?php echo esc_attr($social_color);?> !important; 
        }
        .custom-logo {
            max-width: <?php echo esc_attr($logo_width);?>px;
