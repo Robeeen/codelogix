@@ -23,6 +23,7 @@ function theme_settings_page(){
         <h2 class="nav-tab-wrapper">
             <a href="?page=theme_customization&tab=general" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'general') ? 'nav-tab-active' : ''; ?>">General</a>
             <a href="?page=theme_customization&tab=advanced" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'advanced') ? 'nav-tab-active' : ''; ?>">Advanced</a>
+            <a href="?page=theme_customization&tab=others" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'others') ? 'nav-tab-active' : ''; ?>">Others</a>
         </h2>  
 
         
@@ -42,6 +43,13 @@ function theme_settings_page(){
                 echo '<form method="post" action="options.php">';
                 settings_fields('advanced_settings_group');
                 do_settings_sections('advanced_settings');
+                submit_button();
+                echo '</form>';
+            } elseif ($tab == 'others') {
+                echo '<h2>Other Settings</h2>';
+                echo '<form method="post" action="options.php">';
+                settings_fields('other_settings_group');
+                do_settings_sections('other_settings');
                 submit_button();
                 echo '</form>';
             }
@@ -86,6 +94,7 @@ function theme_register_settings() {
     register_setting('advanced_settings_group', 'border_background');
     register_setting('advanced_settings_group', 'button_text');
     register_setting('advanced_settings_group', 'menu_font_size');
+    register_setting('advanced_settings_group', 'menu_space');
     
 
     add_settings_section(
@@ -94,6 +103,17 @@ function theme_register_settings() {
         null,
         'advanced_settings'
     );
+
+    //For Other Settings Page
+    register_setting('other_settings_group', 'other_font_size');
+
+    add_settings_section(
+        'other_section',
+        '',
+        null,
+        'other_settings'
+    );
+
 
 
 /********************************** ALL FIELDS GENERAL SETTINGS *******************************************/
@@ -226,7 +246,7 @@ function theme_register_settings() {
     //For Header Background Color
     add_settings_field(
         'custom_header_background', 
-        'Background Color:', 
+        'Header Background Color:', 
         'theme_header_background_color_callback', 
         'advanced_settings', 
         'advanced_section'
@@ -234,7 +254,7 @@ function theme_register_settings() {
     //For Header Border Bottom
     add_settings_field(
         'header_border_bottom', 
-        'Header Border Bottom:', 
+        'Header Border Bottom Width:', 
         'theme_header_border_bottom_callback', 
         'advanced_settings', 
         'advanced_section'
@@ -243,7 +263,7 @@ function theme_register_settings() {
      //For Header Border Bottom Color
      add_settings_field(
         'border_background', 
-        'Border Background:', 
+        'Border Bottom Color:', 
         'theme_border_background_callback', 
         'advanced_settings', 
         'advanced_section'
@@ -258,14 +278,35 @@ function theme_register_settings() {
         'advanced_section'
     );
 
-    //For Header Button Text - dynamic
+    //For Header Menu Font Size 
       add_settings_field(
         'menu_font_size', 
-        'Nav Menu Font Size', 
+        'Nav Menu Font Size (px)', 
         'menu_font_size_callback', 
         'advanced_settings', 
         'advanced_section'
     );
+
+    //For Header Menu Item Space
+    add_settings_field(
+        'menu_space', 
+        'Menu Item Space (px)', 
+        'menu_space_callback', 
+        'advanced_settings', 
+        'advanced_section'
+    );
+
+    /*********OTHER SETTINGS********* */
+    
+    //For 
+    add_settings_field(
+        'other_font_size', 
+        'Menu Item Space (px)', 
+        'other_font_size_callback', 
+        'other_settings', 
+        'other_section'
+    );
+    
     
 }
 
@@ -511,6 +552,32 @@ function menu_font_size_callback(){
 <?php
 }
 
+//header NAV Menu Item Space
+function menu_space_callback(){
+    $value = get_option('menu_space', '');
+    ?>            
+        <input type="number"        
+        name="menu_space" 
+        value="<?php echo esc_attr($value);?>" 
+        class="form-control" 
+        placeholder="Space Right"
+         />    
+<?php
+}
+
+//header NAV Menu Item Space
+function other_font_size_callback(){
+    $value = get_option('other_font_size', '');
+    ?>            
+        <input type="number"        
+        name="other_font_size" 
+        value="<?php echo esc_attr($value);?>" 
+        class="form-control" 
+        placeholder="Space Right"
+         />    
+<?php
+}
+
 
 /************************************* ALL DYNAMIC STYLE - CSS***************************/
 //Function to create CSS for Nav Bar 
@@ -527,6 +594,7 @@ function display_top_bar_height(){
     $header_border  = get_option('header_border_bottom'); //Get user-defined border bottom
     $border_backgr  = get_option('border_background'); //Get user-defined color
     $nav_font_size  = get_option('menu_font_size'); //Get Main Menu Font size
+    $nav_space  = get_option('menu_space'); //Get Main Menu Font size
     
     ?>
    <style>
@@ -558,6 +626,13 @@ function display_top_bar_height(){
        .main-navigation a, 
         .menu-primary-menu-container ul li a {
             font-size: <?php echo esc_attr($nav_font_size); ?>px;
+            padding-right: <?php echo esc_attr($nav_space); ?>px;       
+        }
+        .the_header li a:link, a:visited, a:active {
+            color: #000000 !important;
+        }   
+        .the_header li a:hover{
+            color: #000000;
         }
    </style>
    <?php

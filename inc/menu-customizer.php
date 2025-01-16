@@ -64,8 +64,7 @@ function custom_menu_dynamic_css() {
         .main-navigation a, 
         .menu-primary-menu-container ul li a {
             font-size: <?php echo esc_attr($menu_font_size); ?>px;
-            padding-right: <?php echo esc_attr($menu_font_padding); ?>px;
-           
+            padding-right: <?php echo esc_attr($menu_font_padding); ?>px;           
         }
         .the_header li a:link, a:visited, a:active {
             color: #000000 !important;
