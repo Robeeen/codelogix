@@ -44,24 +44,78 @@
 				</div>
 
 				<div class="top_social"> 
-					<a href="https://<?php echo get_option('linkedin_link');?>" target="_new" class="dont_show"><i class="fab fa-linkedin-in"></i></a>
-					<a href="https://<?php echo get_option('tube_link');?>" target="_new" class="dont_show"><i class="fab fa-youtube"></i></a> 
-					<a href="https://<?php echo get_option('fb_link');?>" target="_new" class="dont_show"><i class="fab fa-facebook-f"></i></a> 
-					<a href="https://<?php echo get_option('twiter_link');?>" target="_new" class="dont_show"><i class="fab fa-twitter"></i></a>
-					<a href="https://<?php echo get_option('skype_link');?>" target="_new" class="dont_show"><i class="fab fa-skype"></i></a>             
+					<a href="https://<?php echo get_option('linkedin_link');?>" target="_new" class="link_show"><i class="fab fa-linkedin-in"></i></a>
+					<a href="https://<?php echo get_option('tube_link');?>" target="_new" class="tube_show"><i class="fab fa-youtube"></i></a> 
+					<a href="https://<?php echo get_option('fb_link');?>" target="_new" class="fb_show"><i class="fab fa-facebook-f"></i></a> 
+					<a href="https://<?php echo get_option('twiter_link');?>" target="_new" class="twiter_show"><i class="fab fa-twitter"></i></a>
+					<a href="https://<?php echo get_option('skype_link');?>" target="_new" class="skype_show"><i class="fab fa-skype"></i></a>             
 				</div>
 				<?php
-					if(get_option('linkedin_link')){
+					if ( strlen(get_option('linkedin_link')) > 0){
 						echo '<style>
-							.dont_show{
-							display: inline;
-							}
-						
-						
-						</style>';
+								.link_show{
+									display: inline;
+								}		
+						      </style>';
+					}else{
+						echo '<style>
+								.link_show{
+									display: none;
+								}		
+						      </style>';
 					}
-
-
+					if( strlen(get_option('fb_link')) > 0){
+						echo '<style>
+								.fb_show{
+									display: inline;
+								}		
+						      </style>';
+					}else{
+						echo '<style>
+								.fb_show{
+									display: none;
+								}		
+						      </style>';
+					}
+					if(strlen(get_option('tube_link')) > 0){
+						echo '<style>
+								.tube_show{
+									display: inline;
+								}		
+						      </style>';
+					}else{
+						echo '<style>
+								.tube_show{
+									display: none;
+								}		
+						      </style>';
+					}
+					if(get_option('twiter_link')){
+						echo '<style>
+								.twiter_show{
+									display: inline;
+								}		
+						      </style>';
+					}else{
+						echo '<style>
+								.twiter_show{
+									display: none;
+								}		
+						      </style>';
+					}
+					if(get_option('skype_link')){
+						echo '<style>
+								.skype_show{
+									display: inline;
+								}		
+						      </style>';
+					}else{
+						echo '<style>
+								.skype_show{
+									display: none;
+								}		
+						      </style>';
+					}
 				?>
 			</div>
 		</div>	
