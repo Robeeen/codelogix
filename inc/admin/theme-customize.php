@@ -64,6 +64,12 @@ function theme_register_settings() {
     register_setting('theme_settings_group', 'custom_font_size');
     register_setting('theme_settings_group', 'custom_top_bar_height');
     register_setting('theme_settings_group', 'top_social_color');
+    register_setting('theme_settings_group', 'fb_link');
+    register_setting('theme_settings_group', 'linkedin_link');
+    register_setting('theme_settings_group', 'tube_link');
+    register_setting('theme_settings_group', 'twiter_link');
+    register_setting('theme_settings_group', 'skype_link');
+    
    
     add_settings_section(
         'theme_main_section', 
@@ -153,7 +159,49 @@ function theme_register_settings() {
         'theme_customization',
         'theme_main_section'
     );
+    //Facebook Link
+    add_settings_field(
+        'fb_link',
+        'Facebook Link',
+        'fb_link_callback',
+        'theme_customization',
+        'theme_main_section'
+    );
+    //Linkedin Link
+    add_settings_field(
+        'linkedin_link',
+        'LinkedIn Link',
+        'linkedin_link_callback',
+        'theme_customization',
+        'theme_main_section'
+    );
+    //Youtube Link
+    add_settings_field(
+        'tube_link',
+        'YouTube Link',
+        'tube_link_callback',
+        'theme_customization',
+        'theme_main_section'
+    );
+    //Twitter Link
+    add_settings_field(
+        'twiter_link',
+        'Twitter Link',
+        'twiter_link_callback',
+        'theme_customization',
+        'theme_main_section'
+    );
+    //Skype Link
+    add_settings_field(
+        'skype_link',
+        'Skype Link',
+        'skype_link_callback',
+        'theme_customization',
+        'theme_main_section'
+    );
 
+
+    /************Fields for Adanced Section**************/
         
     //For Logo Size Width Fields
     add_settings_field(
@@ -294,8 +342,59 @@ function top_social_color_callback(){
     class="custom-color-field" />   
 <?php
 }
+//Facebook Link
+function fb_link_callback(){
+    $fb = get_option('fb_link');
+    ?>
+    <input type="text"      
+    name="fb_link" 
+    value="<?php echo esc_attr($fb);?>"
+     />   
+<?php
+}
+//YOutube Link
+function tube_link_callback(){
+    $fb = get_option('tube_link');
+    ?>
+    <input type="text"      
+    name="tube_link" 
+    value="<?php echo esc_attr($fb);?>"
+     />   
+<?php
+}
+//Linkedin Link
+function linkedin_link_callback(){
+    $fb = get_option('linkedin_link');
+    ?>
+    <input type="text"      
+    name="linkedin_link" 
+    value="<?php echo esc_attr($fb);?>"
+     />   
+<?php
+}
+//Twitter Link
+function twiter_link_callback(){
+    $fb = get_option('twiter_link');
+    ?>
+    <input type="text"      
+    name="twiter_link" 
+    value="<?php echo esc_attr($fb);?>"
+     />   
+<?php
+}
 
+//Skype Link
+function skype_link_callback(){
+    $fb = get_option('skype_link');
+    ?>
+    <input type="text"      
+    name="skype_link" 
+    value="<?php echo esc_attr($fb);?>"
+     />   
+<?php
+}
 //**************Main Header Section**********//
+
 //Header Logo Size - Width Control
 function theme_logo_callback(){
     $value = get_option('custom_logo_size', '100');
