@@ -1007,7 +1007,7 @@ button{
 }
 
 .top_left , .top_middle, .top_right{
-	width: 15%;
+	width: 12%;
 }
 .top_section{   
     text-align: center;
@@ -1022,7 +1022,7 @@ button{
 }	
 .top_social{
 	text-align: right;
-	width: 60%;
+	width: 70%;
 }
 .top_social i{
 	margin-right: 5px;
