@@ -44,7 +44,7 @@
 				</div>
 
 				<div class="top_social"> 
-					<i class="fab fa-linkedin-in"></i>
+					<a href="https://<?php echo get_option('fb_link');?>" target="_new"><i class="fab fa-linkedin-in"></i></a>
 					<i class="fab fa-youtube"></i> 
 					<i class="fab fa-facebook-f"></i> 
 					<i class="fab fa-twitter"></i>
