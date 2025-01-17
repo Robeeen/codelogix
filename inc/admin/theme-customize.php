@@ -105,7 +105,7 @@ function theme_register_settings() {
     );
 
     //For Other Settings Page
-    register_setting('other_settings_group', 'other_font_size');
+    register_setting('other_settings_group', 'site_logo');
 
     add_settings_section(
         'other_section',
@@ -300,9 +300,9 @@ function theme_register_settings() {
     
     //For 
     add_settings_field(
-        'other_font_size', 
-        'Menu Item Space (px)', 
-        'other_font_size_callback', 
+        'site_logo', 
+        'Site Logo:', 
+        'site_logo_callback', 
         'other_settings', 
         'other_section'
     );
@@ -566,15 +566,16 @@ function menu_space_callback(){
 }
 
 //header NAV Menu Item Space
-function other_font_size_callback(){
-    $value = get_option('other_font_size', '');
+function site_logo_callback(){
+    $site_logo = get_option('site_logo');
     ?>            
-        <input type="number"        
-        name="other_font_size" 
-        value="<?php echo esc_attr($value);?>" 
-        class="form-control" 
-        placeholder="Space Right"
-         />    
+    <div>
+        <input type="text" id="site_logo" name="site_logo" value="<?php echo esc_url($site_logo); ?>" class="regular-text">
+        <button class="button site-logo-upload">Upload Logo</button>
+        <?php if ($site_logo) : ?>
+            <br><img src="<?php echo esc_url($site_logo); ?>" style="max-width: 150px; margin-top: 10px;">
+        <?php endif; ?>
+    </div>
 <?php
 }
 
@@ -640,6 +641,15 @@ function display_top_bar_height(){
 
 /*****************************************************************************/
 
+function my_admin_scripts($hook) {
+    if ($hook != 'toplevel_page_site-identity') {
+        return;
+    }
+
+    wp_enqueue_media();
+    wp_enqueue_script('site-identity-script', plugins_url('site-identity.js', __FILE__), array('jquery'), null, true);
+}
+add_action('admin_enqueue_scripts', 'my_admin_scripts');
 
 
 
