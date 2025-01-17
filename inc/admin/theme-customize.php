@@ -33,14 +33,14 @@ function theme_settings_page(){
             $tab = isset($_GET['tab']) ? $_GET['tab'] : 'general';
 
             if ($tab == 'general') {
-                echo '<h2>General Settings</h2>';
+                echo '<h2>Top Bar Settings</h2>';
                 echo '<form method="post" action="options.php">';
                 settings_fields('theme_settings_group');
                 do_settings_sections('theme_customization');
                 submit_button();
                 echo '</form>';
             } elseif ($tab == 'advanced') {
-                echo '<h2>Advanced Settings</h2>';
+                echo '<h2>Header Settings</h2>';
                 echo '<form method="post" action="options.php">';
                 settings_fields('advanced_settings_group');
                 do_settings_sections('advanced_settings');
