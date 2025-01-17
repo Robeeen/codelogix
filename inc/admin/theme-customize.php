@@ -760,22 +760,46 @@ function button_border_color_callback(){
    
 <?php
 }
-
+//List of All Fonts 
+function codelogix_font_families(){
+    return [
+        'Arial, sans-serif',
+        'Verdana, sans-serif',
+        'Helvetica, sans-serif',
+        'Times New Roman, serif',
+        'Georgia, serif',
+        'Courier New, monospace',
+        'Comic Sans MS, cursive',
+        'Trebuchet MS, sans-serif',
+        'Impact, sans-serif',
+        'Lucida Console, monospace',
+        'Tahoma, sans-serif',
+        'Poppins, sans-serif',
+    ];
+}
 
 //Button Border 
 function button_font_family_callback(){
-    $value = get_option('button_font_family', '');
-    ?>      
-        <input type="number" 
-        name="button_font_family" 
-        value="<?php echo esc_attr($value); ?>" 
-        class="form-control" 
-        placeholder="Button Font Family" />
-   
-<?php
+    $selected_font = get_option('button_font_family', 'Arial');
+    $fonts = codelogix_font_families();
+
+    echo '<select name="button_font_family">';
+    foreach($fonts as $font){
+        $selected = ($selected_font == $font) ? 'selected' : '';
+        echo '<option value="' . esc_attr($font) . '" ' . $selected . '>' . esc_html($font) . '</option>';
+        }
+    echo '</select>';
 }
 
-
+//Load fonts from Google font api
+function load_selected_google_font() {
+    $font = get_option('button_font_family');
+    if ($font) {
+        $font_slug = str_replace(' ', '+', $font);
+        echo '<link href="https://fonts.googleapis.com/css2?family=' . esc_attr($font_slug) . ':wght@400;700&display=swap" rel="stylesheet">';
+    }
+}
+add_action('wp_head', 'load_selected_google_font');
 
 
 /************************************* ALL DYNAMIC STYLE - CSS***************************/
