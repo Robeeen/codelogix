@@ -20,6 +20,7 @@ function theme_settings_page(){
         <h1><?php esc_html_e( 'Theme Customization Page' ); ?></h1>
 
         <h3><?php esc_html_e( 'Header Section Customization' ); ?></h3>
+        <!-----------CREATING NEW TABS ON ADD MENU PAGES------------------>
         <h2 class="nav-tab-wrapper">
             <a href="?page=theme_customization&tab=general" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'general') ? 'nav-tab-active' : ''; ?>">General</a>
             <a href="?page=theme_customization&tab=advanced" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'advanced') ? 'nav-tab-active' : ''; ?>">Advanced</a>
@@ -63,6 +64,7 @@ function theme_settings_page(){
 add_action('admin_init', 'theme_register_settings');
 
 function theme_register_settings() {
+
     //For General Page
     register_setting('theme_settings_group', 'theme_fields');
     register_setting('theme_settings_group', 'theme_fields1');
@@ -86,8 +88,7 @@ function theme_register_settings() {
         'theme_customization'
     );
 
-    //For Advanced Page
- 
+    //For Advanced Page 
     register_setting('advanced_settings_group', 'custom_header_background');
     register_setting('advanced_settings_group', 'header_border_bottom');
     register_setting('advanced_settings_group', 'border_background');
@@ -114,7 +115,6 @@ function theme_register_settings() {
         null,
         'other_settings'
     );
-
 
 
 /********************************** ALL FIELDS GENERAL SETTINGS *******************************************/
@@ -281,8 +281,6 @@ function theme_register_settings() {
     );
 
 
-
-
     /*********OTHER SETTINGS***********/
     
     //For 
@@ -293,7 +291,6 @@ function theme_register_settings() {
         'other_settings', 
         'other_section'
     );
-
     
     //For Logo Size Width Fields
     add_settings_field(
@@ -311,12 +308,11 @@ function theme_register_settings() {
         'theme_logo_padding_callback', 
         'other_settings', 
         'other_section'
-    );
-    
+    );    
     
 }
 
-/************************************ ALL CALLBACK FUNCTIONS *****************************/
+/***************TOP NAV BARCALLBACK FUNCTIONS ****************/
 //For theme_field Email
 function theme_field_callback(){
     $value = get_option('theme_fields', '');
@@ -461,9 +457,7 @@ function skype_link_callback(){
 <?php
 }
 
-//**************Main Header Section**********//
-
-
+//**************MAIN HEADER SECTION**********//
 //Header BackGround Color
 function theme_header_background_color_callback(){
     $value = get_option('custom_header_background', '');
@@ -548,6 +542,7 @@ function menu_space_callback(){
 <?php
 }
 
+//**************LOGO AND BUTTON SECTION CALLBACK **********//
 //header Logo Uploading
 function site_logo_callback(){
     $site_logo = get_option('site_logo');
@@ -647,7 +642,7 @@ function display_top_bar_height(){
    <?php
 }
 
-/*****************************************************************************/
+/*********************************END********************************************/
 
 
 
