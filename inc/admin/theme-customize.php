@@ -108,6 +108,15 @@ function theme_register_settings() {
     register_setting('other_settings_group', 'site_logo');
     register_setting('other_settings_group', 'custom_logo_size');
     register_setting('other_settings_group', 'custom_logo_padding');
+    register_setting('other_settings_group', 'button_background');
+    register_setting('other_settings_group', 'button_text_color');
+    register_setting('other_settings_group', 'button_padding');
+    register_setting('other_settings_group', 'button_font_size');
+    register_setting('other_settings_group', 'button_border');
+    register_setting('other_settings_group', 'button_radius');
+    register_setting('other_settings_group', 'button_border_color');
+    register_setting('other_settings_group', 'button_font_family');
+
 
     add_settings_section(
         'other_section',
@@ -309,6 +318,77 @@ function theme_register_settings() {
         'other_settings', 
         'other_section'
     );    
+
+     //For Button Background 
+     add_settings_field(
+        'button_background', 
+        'Button Background:', 
+        'button_background_callback', 
+        'other_settings', 
+        'other_section'
+    ); 
+    
+     //For Button Text Color 
+     add_settings_field(
+        'button_text_color', 
+        'Button Text Color:', 
+        'button_text_color_callback', 
+        'other_settings', 
+        'other_section'
+    ); 
+    
+    //For Button Padding
+    add_settings_field(
+        'button_padding', 
+        'Button Padding', 
+        'button_padding_callback', 
+        'other_settings', 
+        'other_section'
+    );
+
+    //For Button Font Size
+    add_settings_field(
+        'button_font_size', 
+        'Button Font', 
+        'button_font_size_callback', 
+        'other_settings', 
+        'other_section'
+    );
+
+    //For Button Border
+    add_settings_field(
+        'button_border', 
+        'Button Border', 
+        'button_border_callback', 
+        'other_settings', 
+        'other_section'
+    );
+    //For Button Border Radius
+    add_settings_field(
+        'button_radius', 
+        'Button Border Radius', 
+        'button_radius_callback', 
+        'other_settings', 
+        'other_section'
+    );
+
+    //For Button Border Color
+    add_settings_field(
+        'button_border_color', 
+        'Button Border Color', 
+        'button_border_color_callback', 
+        'other_settings', 
+        'other_section'
+    );
+
+    //For Button Font Family
+    add_settings_field(
+        'button_font_family', 
+        'Button Font Family', 
+        'button_font_family_callback', 
+        'other_settings', 
+        'other_section'
+    );
     
 }
 
@@ -582,6 +662,120 @@ function theme_logo_padding_callback(){
    
 <?php
 }
+
+//Header Button Background Color
+function button_background_callback(){
+    $value = get_option('button_background', '#ffffff');
+    ?>
+            
+        <input type="text" 
+        id="button_background"        
+        name="button_background" 
+        value="<?php echo esc_attr($value);?>" 
+        class="custom-color-field" 
+         />
+    
+<?php
+}
+
+
+//Header Button Background Color
+function button_text_color_callback(){
+    $value = get_option('button_text_color', '#ffffff');
+    ?>
+            
+        <input type="text" 
+        id="button_text_color"        
+        name="button_text_color" 
+        value="<?php echo esc_attr($value);?>" 
+        class="custom-color-field" 
+         />
+    
+<?php
+}
+
+//Button Padding 
+function button_padding_callback(){
+    $value = get_option('button_padding', '');
+    ?>      
+        <input type="number" 
+        name="button_padding" 
+        value="<?php echo esc_attr($value); ?>" 
+        class="form-control" 
+        placeholder="Button Padding" />
+   
+<?php
+}
+
+//Button Padding 
+function button_font_size_callback(){
+    $value = get_option('button_font_size', '');
+    ?>      
+        <input type="number" 
+        name="button_font_size" 
+        value="<?php echo esc_attr($value); ?>" 
+        class="form-control" 
+        placeholder="Button Font Size" />
+   
+<?php
+}
+
+
+//Button Border 
+function button_border_callback(){
+    $value = get_option('button_border', '');
+    ?>      
+        <input type="number" 
+        name="button_border" 
+        value="<?php echo esc_attr($value); ?>" 
+        class="form-control" 
+        placeholder="Button Border" />
+   
+<?php
+}
+
+//Button Border 
+function button_radius_callback(){
+    $value = get_option('button_radius', '');
+    ?>      
+        <input type="number" 
+        name="button_radius" 
+        value="<?php echo esc_attr($value); ?>" 
+        class="form-control" 
+        placeholder="Button Radius" />
+   
+<?php
+}
+
+//Button Border 
+function button_border_color_callback(){
+    $value = get_option('button_border_color', '');
+    ?>      
+        <input type="number" 
+        name="button_border_color" 
+        value="<?php echo esc_attr($value); ?>" 
+        class="form-control" 
+        placeholder="Button Border Color" />
+   
+<?php
+}
+
+
+//Button Border 
+function button_font_family_callback(){
+    $value = get_option('button_font_family', '');
+    ?>      
+        <input type="number" 
+        name="button_font_family" 
+        value="<?php echo esc_attr($value); ?>" 
+        class="form-control" 
+        placeholder="Button Font Family" />
+   
+<?php
+}
+
+
+
 
 /************************************* ALL DYNAMIC STYLE - CSS***************************/
 //Function to create CSS for Nav Bar 
