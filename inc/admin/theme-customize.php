@@ -793,6 +793,15 @@ function display_top_bar_height(){
     $border_backgr  = get_option('border_background'); //Get user-defined color
     $nav_font_size  = get_option('menu_font_size'); //Get Main Menu Font size
     $nav_space  = get_option('menu_space'); //Get Main Menu Font size
+    $button_background = get_option('button_background'); //Get Main Menu Font size
+    $button_text_color = get_option('button_text_color'); //Get Main Menu Font size
+    $button_padding = get_option('button_padding'); //Get Main Menu Font size
+    $button_font_size = get_option('button_font_size'); //Get Main Menu Font size
+    $button_border = get_option('button_border'); //Get Main Menu Font size
+    $button_radius = get_option('button_radius'); //Get Main Menu Font size
+    $button_border_color = get_option('button_border_color'); //Get Main Menu Font size
+    $button_font_family = get_option('button_font_family'); //Get Main Menu Font size
+
     
     ?>
    <style>
@@ -831,6 +840,12 @@ function display_top_bar_height(){
         }   
         .the_header li a:hover{
             color: #000000;
+        }
+        .site-button button {
+            background: #2c2e30;
+            color: rgb(255 255 255 / 80%);
+            padding: 0.6em 2em 0.8em;
+            font-size: 14px;
         }
    </style>
    <?php
