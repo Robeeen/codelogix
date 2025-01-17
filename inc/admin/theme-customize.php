@@ -734,7 +734,7 @@ function button_border_callback(){
 <?php
 }
 
-//Button Border 
+//Button Border Radius
 function button_radius_callback(){
     $value = get_option('button_radius', '');
     ?>      
@@ -749,13 +749,14 @@ function button_radius_callback(){
 
 //Button Border 
 function button_border_color_callback(){
-    $value = get_option('button_border_color', '');
+    $value = get_option('button_border_color', '#ffffff');
     ?>      
-        <input type="number" 
+        <input type="text" 
+        id="button_border_color"
         name="button_border_color" 
         value="<?php echo esc_attr($value); ?>" 
-        class="form-control" 
-        placeholder="Button Border Color" />
+        class="custom-color-field" 
+         />
    
 <?php
 }
@@ -793,6 +794,7 @@ function display_top_bar_height(){
     $border_backgr  = get_option('border_background'); //Get user-defined color
     $nav_font_size  = get_option('menu_font_size'); //Get Main Menu Font size
     $nav_space  = get_option('menu_space'); //Get Main Menu Font size
+    
     $button_background = get_option('button_background'); //Get Main Menu Font size
     $button_text_color = get_option('button_text_color'); //Get Main Menu Font size
     $button_padding = get_option('button_padding'); //Get Main Menu Font size
@@ -842,10 +844,13 @@ function display_top_bar_height(){
             color: #000000;
         }
         .site-button button {
-            background: #2c2e30;
-            color: rgb(255 255 255 / 80%);
-            padding: 0.6em 2em 0.8em;
-            font-size: 14px;
+            background:<?php echo esc_attr($button_background); ?>;
+            color: <?php echo esc_attr($button_text_color); ?>;
+            padding: <?php echo esc_attr($button_padding); ?>px;
+            font-size: <?php echo esc_attr($button_font_size); ?>px;
+            border: <?php echo esc_attr($button_border); ?>px solid <?php echo esc_attr($button_border_color); ?>;
+            border-radius: <?php echo esc_attr($button_radius); ?>px;
+            font-family: <?php echo esc_attr($button_font_family); ?>;
         }
    </style>
    <?php
