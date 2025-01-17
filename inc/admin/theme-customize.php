@@ -19,7 +19,7 @@ function theme_settings_page(){
     <div class="wrap">
         <h1><?php esc_html_e( 'Theme Customization Page' ); ?></h1>
 
-        <h3><?php esc_html_e( 'Settings for Top Navbar' ); ?></h3>
+        <h3><?php esc_html_e( 'Header Section Customization' ); ?></h3>
         <h2 class="nav-tab-wrapper">
             <a href="?page=theme_customization&tab=general" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'general') ? 'nav-tab-active' : ''; ?>">General</a>
             <a href="?page=theme_customization&tab=advanced" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'advanced') ? 'nav-tab-active' : ''; ?>">Advanced</a>
@@ -46,7 +46,7 @@ function theme_settings_page(){
                 submit_button();
                 echo '</form>';
             } elseif ($tab == 'others') {
-                echo '<h2>Other Settings</h2>';
+                echo '<h2>Logo and Button Settings</h2>';
                 echo '<form method="post" action="options.php">';
                 settings_fields('other_settings_group');
                 do_settings_sections('other_settings');
@@ -87,8 +87,7 @@ function theme_register_settings() {
     );
 
     //For Advanced Page
-    register_setting('advanced_settings_group', 'custom_logo_size');
-    register_setting('advanced_settings_group', 'custom_logo_padding');
+ 
     register_setting('advanced_settings_group', 'custom_header_background');
     register_setting('advanced_settings_group', 'header_border_bottom');
     register_setting('advanced_settings_group', 'border_background');
@@ -106,6 +105,8 @@ function theme_register_settings() {
 
     //For Other Settings Page
     register_setting('other_settings_group', 'site_logo');
+    register_setting('other_settings_group', 'custom_logo_size');
+    register_setting('other_settings_group', 'custom_logo_padding');
 
     add_settings_section(
         'other_section',
@@ -223,25 +224,8 @@ function theme_register_settings() {
     );
 
 
-    /************Fields for Adanced Section**************/
-        
-    //For Logo Size Width Fields
-    add_settings_field(
-        'custom_logo_size', 
-        'Logo Width (px):', 
-        'theme_logo_callback', 
-        'advanced_settings', 
-        'advanced_section'
-    );
+    /************Fields for Adanced Section**************/    
 
-    //For Logo Padding 
-    add_settings_field(
-        'custom_logo_padding', 
-        'Logo Padding (px):', 
-        'theme_logo_padding_callback', 
-        'advanced_settings', 
-        'advanced_section'
-    );
 
     //For Header Background Color
     add_settings_field(
@@ -296,13 +280,35 @@ function theme_register_settings() {
         'advanced_section'
     );
 
-    /*********OTHER SETTINGS********* */
+
+
+
+    /*********OTHER SETTINGS***********/
     
     //For 
     add_settings_field(
         'site_logo', 
         'Site Logo:', 
         'site_logo_callback', 
+        'other_settings', 
+        'other_section'
+    );
+
+    
+    //For Logo Size Width Fields
+    add_settings_field(
+        'custom_logo_size', 
+        'Logo Width (px):', 
+        'theme_logo_callback', 
+        'other_settings', 
+        'other_section'
+    );      
+
+    //For Logo Padding 
+    add_settings_field(
+        'custom_logo_padding', 
+        'Logo Padding (px):', 
+        'theme_logo_padding_callback', 
         'other_settings', 
         'other_section'
     );
@@ -454,33 +460,10 @@ function skype_link_callback(){
      />   
 <?php
 }
+
 //**************Main Header Section**********//
 
-//Header Logo Size - Width Control
-function theme_logo_callback(){
-    $value = get_option('custom_logo_size', '100');
-    ?>
-            
-        <input type="number" 
-        name="custom_logo_size" 
-        value="<?php echo esc_attr($value); ?>" 
-        class="form-control" 
-        placeholder="Logo Size" />
-   
-<?php
-}
-//Header Logo Padding 
-function theme_logo_padding_callback(){
-    $value = get_option('custom_logo_padding', '');
-    ?>      
-        <input type="number" 
-        name="custom_logo_padding" 
-        value="<?php echo esc_attr($value); ?>" 
-        class="form-control" 
-        placeholder="Logo Size" />
-   
-<?php
-}
+
 //Header BackGround Color
 function theme_header_background_color_callback(){
     $value = get_option('custom_header_background', '');
@@ -579,6 +562,31 @@ function site_logo_callback(){
 <?php
 }
 
+//Header Logo Size - Width Control
+function theme_logo_callback(){
+    $value = get_option('custom_logo_size', '100');
+    ?>
+            
+        <input type="number" 
+        name="custom_logo_size" 
+        value="<?php echo esc_attr($value); ?>" 
+        class="form-control" 
+        placeholder="Logo Size" />
+   
+<?php
+}
+//Header Logo Padding 
+function theme_logo_padding_callback(){
+    $value = get_option('custom_logo_padding', '');
+    ?>      
+        <input type="number" 
+        name="custom_logo_padding" 
+        value="<?php echo esc_attr($value); ?>" 
+        class="form-control" 
+        placeholder="Logo Size" />
+   
+<?php
+}
 
 /************************************* ALL DYNAMIC STYLE - CSS***************************/
 //Function to create CSS for Nav Bar 
