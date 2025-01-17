@@ -122,11 +122,16 @@
 		<div class="the_header">
 			<!-- .site-branding -->
 			<div class="site-branding">
+				<div class="custom-logo">
+				<img src="<?php echo get_option('site_logo'); ?>" />
+				</div>
+			
 				<?php
 				//Custom Logo - 01.07.2025 - https://developer.wordpress.org/themes/functionality/custom-logo/
 				if ( function_exists( 'the_custom_logo' ) ) {
 					the_custom_logo();
 				}
+				
 
 				if ( is_front_page() && is_home() ) :
 					?>

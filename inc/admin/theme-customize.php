@@ -565,7 +565,7 @@ function menu_space_callback(){
 <?php
 }
 
-//header NAV Menu Item Space
+//header Logo Uploading
 function site_logo_callback(){
     $site_logo = get_option('site_logo');
     ?>            
@@ -573,7 +573,7 @@ function site_logo_callback(){
         <input type="text" id="site_logo" name="site_logo" value="<?php echo esc_url($site_logo); ?>" class="regular-text">
         <button class="button site-logo-upload">Upload Logo</button>
         <?php if ($site_logo) : ?>
-            <br><img src="<?php echo esc_url($site_logo); ?>" style="max-width: 150px; margin-top: 10px;">
+            <br><img src="<?php echo esc_attr($site_logo); ?>" style="max-width: 150px; margin-top: 10px;">
         <?php endif; ?>
     </div>
 <?php
@@ -614,7 +614,7 @@ function display_top_bar_height(){
        .top_social a:visited{
            color: <?php echo esc_attr($social_color);?> !important; 
        }
-       .custom-logo {
+       .custom-logo img {
            max-width: <?php echo esc_attr($logo_width);?>px;
            height: auto;
            padding-top: <?php echo esc_attr($logo_padding);?>px;
@@ -641,15 +641,6 @@ function display_top_bar_height(){
 
 /*****************************************************************************/
 
-function my_admin_scripts($hook) {
-    if ($hook != 'toplevel_page_site-identity') {
-        return;
-    }
-
-    wp_enqueue_media();
-    wp_enqueue_script('site-identity-script', plugins_url('site-identity.js', __FILE__), array('jquery'), null, true);
-}
-add_action('admin_enqueue_scripts', 'my_admin_scripts');
 
 
 
