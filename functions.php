@@ -199,11 +199,13 @@ function hook_for_js() {
     // if ($hook != 'toplevel_page_site-identity') {
     //     return;
     // }
-
+	wp_enqueue_style('codelogix_admin', get_template_directory_uri() . '/inc/admin/css/style.css');
     wp_enqueue_media();
     wp_enqueue_script('site-identity-script', get_template_directory_uri() . '/js/site-identity.js', array('jquery'), null, true);
 }
 add_action('admin_enqueue_scripts', 'hook_for_js');
+
+
 
 
 

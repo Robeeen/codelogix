@@ -79,6 +79,7 @@ function theme_register_settings() {
     register_setting('theme_settings_group', 'tube_link');
     register_setting('theme_settings_group', 'twiter_link');
     register_setting('theme_settings_group', 'skype_link');
+    register_setting('theme_settings_group', 'toggle_switch');
     
    
     add_settings_section(
@@ -127,6 +128,17 @@ function theme_register_settings() {
 
 
 /********************************** ALL FIELDS GENERAL SETTINGS *******************************************/
+    //For theme_field Email
+    add_settings_field(
+        'toggle_switch', 
+        'Tob Bar On/Off:', 
+        'toggle_switch_callback', 
+        'theme_customization', 
+        'theme_main_section',
+        [
+			'label_for' => 'toggle_switch'
+		]
+    );
     //For theme_field Email
     add_settings_field(
         'theme_fields', 
@@ -393,6 +405,23 @@ function theme_register_settings() {
 }
 
 /***************TOP NAV BARCALLBACK FUNCTIONS ****************/
+//For TOP nav On Off switch
+function toggle_switch_callback(){
+    $value = get_option('toggle_switch');
+    ?>
+     <label class="switch">        
+        <input type="checkbox" 
+        name="toggle_switch" 
+        value = "1"
+        <?php if($value == '1'){
+            echo ' checked';
+        };?>
+        />
+        
+        <span class="slider"></span>
+    </label>
+<?php
+}
 //For theme_field Email
 function theme_field_callback(){
     $value = get_option('theme_fields', '');
@@ -775,8 +804,15 @@ function codelogix_font_families(){
         'Lucida Console, monospace',
         'Tahoma, sans-serif',
         'Poppins, sans-serif',
+        'Open Sans, sans-serif',
+        'Noto Sans, sans-serif',
+        'Playfair Display, sans-serif',
     ];
+
+    do_action('codelogix_font_family');
 }
+
+
 
 //Button Border 
 function button_font_family_callback(){
@@ -806,6 +842,7 @@ add_action('wp_head', 'load_selected_google_font');
 //Function to create CSS for Nav Bar 
 add_action('wp_head', 'display_top_bar_height');
 function display_top_bar_height(){
+    $toggle_switch  = get_option('toggle_switch'); // Top Bar ON OFF Switch
     $height         = get_option('custom_top_bar_height'); // Get user-defined Color
     $font_size      = get_option('custom_font_size');//Get the user-defind font-size
     $font_color     = get_option('custom_font_color'); //Get the font color
@@ -828,7 +865,7 @@ function display_top_bar_height(){
     $button_border_color = get_option('button_border_color'); //Get Main Menu Font size
     $button_font_family = get_option('button_font_family'); //Get Main Menu Font size
 
-    
+   
     ?>
    <style>
        .top_section {
@@ -836,6 +873,9 @@ function display_top_bar_height(){
            font-size: <?php echo esc_attr($font_size);?>px;
            color:<?php echo esc_attr($font_color);?>;
            background:<?php echo esc_attr($top_backgrd);?>; 
+           display: <?php if($toggle_switch == "1"){
+            echo 'none';
+           }?>
        }
        .top_social {
            color: <?php echo esc_attr($social_color);?>;           
