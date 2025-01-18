@@ -854,16 +854,15 @@ function display_top_bar_height(){
     $header_border  = get_option('header_border_bottom'); //Get user-defined border bottom
     $border_backgr  = get_option('border_background'); //Get user-defined color
     $nav_font_size  = get_option('menu_font_size'); //Get Main Menu Font size
-    $nav_space  = get_option('menu_space'); //Get Main Menu Font size
-    
-    $button_background = get_option('button_background'); //Get Main Menu Font size
-    $button_text_color = get_option('button_text_color'); //Get Main Menu Font size
-    $button_padding = get_option('button_padding'); //Get Main Menu Font size
-    $button_font_size = get_option('button_font_size'); //Get Main Menu Font size
-    $button_border = get_option('button_border'); //Get Main Menu Font size
-    $button_radius = get_option('button_radius'); //Get Main Menu Font size
-    $button_border_color = get_option('button_border_color'); //Get Main Menu Font size
-    $button_font_family = get_option('button_font_family'); //Get Main Menu Font size
+    $nav_space      = get_option('menu_space'); //Get  
+    $button_background  = get_option('button_background'); //Get 
+    $button_text_color  = get_option('button_text_color'); //Get 
+    $button_padding     = get_option('button_padding'); //Get 
+    $button_font_size   = get_option('button_font_size'); //Get 
+    $button_border       = get_option('button_border'); //Get 
+    $button_radius      = get_option('button_radius'); //Get 
+    $button_border_color = get_option('button_border_color'); //Get 
+    $button_font_family = get_option('button_font_family'); //Get 
 
    
     ?>
@@ -873,7 +872,7 @@ function display_top_bar_height(){
            font-size: <?php echo esc_attr($font_size);?>px;
            color:<?php echo esc_attr($font_color);?>;
            background:<?php echo esc_attr($top_backgrd);?>; 
-           display: <?php if($toggle_switch == "1"){
+           display: <?php if($toggle_switch !== "1"){
             echo 'none';
            }?>
        }
