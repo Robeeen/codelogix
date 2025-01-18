@@ -117,6 +117,7 @@ function theme_register_settings() {
     register_setting('other_settings_group', 'button_radius');
     register_setting('other_settings_group', 'button_border_color');
     register_setting('other_settings_group', 'button_font_family');
+    register_setting('other_settings_group', 'button_switch');
 
 
     add_settings_section(
@@ -128,7 +129,7 @@ function theme_register_settings() {
 
 
 /********************************** ALL FIELDS GENERAL SETTINGS *******************************************/
-    //For theme_field Email
+    //For Top bar Switch ON-OFF
     add_settings_field(
         'toggle_switch', 
         'Tob Bar On/Off:', 
@@ -331,6 +332,17 @@ function theme_register_settings() {
         'other_section'
     );    
 
+     //For Top bar Switch ON-OFF
+     add_settings_field(
+        'button_switch', 
+        'Button Hide-Display:', 
+        'button_switch_callback', 
+        'other_settings', 
+        'other_section',
+        [
+			'label_for' => 'button_switch'
+		]
+    );
      //For Button Background 
      add_settings_field(
         'button_background', 
@@ -789,7 +801,7 @@ function button_border_color_callback(){
    
 <?php
 }
-//List of All Fonts 
+//List of All Fonts family Array
 function codelogix_font_families(){
     return [
         'Arial, sans-serif',
@@ -837,6 +849,23 @@ function load_selected_google_font() {
 }
 add_action('wp_head', 'load_selected_google_font');
 
+//For Button Display switch
+function button_switch_callback(){
+    $value = get_option('button_switch');
+    ?>
+     <label class="switch">        
+        <input type="checkbox" 
+        name="button_switch" 
+        value = "1"
+        <?php if($value == '1'){
+            echo ' checked';
+        };?>
+        />
+        
+        <span class="slider"></span>
+    </label>
+<?php
+}
 
 /************************************* ALL DYNAMIC STYLE - CSS***************************/
 //Function to create CSS for Nav Bar 
@@ -863,6 +892,7 @@ function display_top_bar_height(){
     $button_radius      = get_option('button_radius'); //Get 
     $button_border_color = get_option('button_border_color'); //Get 
     $button_font_family = get_option('button_font_family'); //Get 
+    $button_switch = get_option('button_switch'); //Get 
 
    
     ?>
@@ -914,6 +944,9 @@ function display_top_bar_height(){
             border: <?php echo esc_attr($button_border); ?>px solid <?php echo esc_attr($button_border_color); ?>;
             border-radius: <?php echo esc_attr($button_radius); ?>px;
             font-family: <?php echo esc_attr($button_font_family); ?>;
+            display: <?php if($button_switch !== "1"){
+                            echo 'none';
+                        }?> !important;
         }
    </style>
    <?php
