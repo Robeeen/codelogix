@@ -948,6 +948,16 @@ function display_top_bar_height(){
                             echo 'none';
                         }?> !important;
         }
+        .site-navigation{
+            width: <?php if($button_switch !== "1"){
+                            echo '70%';
+                        }?>;
+        }
+        .site-button{
+            width: <?php if($button_switch !== "1"){
+                            echo '0%';
+                        }?>;
+        }
    </style>
    <?php
 }
