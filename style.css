@@ -985,7 +985,9 @@ header{
 }
 .site-navigation{
 	width: 60%;
-	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: right;
 }
 .site-button{
 	width: 10%;
@@ -998,7 +1000,7 @@ button{
 	background: #2c2e30;
     color: rgb(255 255 255 / 80%);
     padding: 0.6em 2em 0.8em;
-  
+	transition: all .4s ease-in-out;
 	font-size: 14px;
 	top: 50%;
 }
