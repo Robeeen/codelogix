@@ -39,6 +39,7 @@ function theme_settings_page(){
                 settings_fields('theme_settings_group');
                 do_settings_sections('theme_customization');
                 submit_button();
+                echo '<input type="reset" name="reset" id="reset" class="button button-primary" value="Reset Fields"  />';
                 echo '</form>';
             } elseif ($tab == 'advanced') {
                 echo '<h2>Header Settings</h2>';
@@ -59,10 +60,10 @@ function theme_settings_page(){
                 echo '<form method="post" action="options.php">';
                 settings_fields('export_settings_group');
                 do_settings_sections('export_settings');
-                submit_button();
+                //submit_button();
                 echo '</form>'; ?>
                 <!-- Export Button -->
-                <h2>Export Settings</h2>
+                <h2>Export all Settings Config</h2>
                 <form method="post" action="">
                     <?php wp_nonce_field('export_settings', 'export_nonce'); ?>
                         <input type="submit" 
