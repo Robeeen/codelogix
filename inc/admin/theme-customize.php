@@ -25,6 +25,7 @@ function theme_settings_page(){
             <a href="?page=theme_customization&tab=general" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'general') ? 'nav-tab-active' : ''; ?>">General</a>
             <a href="?page=theme_customization&tab=advanced" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'advanced') ? 'nav-tab-active' : ''; ?>">Advanced</a>
             <a href="?page=theme_customization&tab=others" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'others') ? 'nav-tab-active' : ''; ?>">Others</a>
+            <a href="?page=theme_customization&tab=export_import" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'export_import') ? 'nav-tab-active' : ''; ?>">Export Import</a>
         </h2>  
 
         
@@ -53,12 +54,98 @@ function theme_settings_page(){
                 do_settings_sections('other_settings');
                 submit_button();
                 echo '</form>';
-            }
-            ?>
-        </div> 
+            } elseif ($tab =='export_import') {
+                echo '<h2>Export and Import Settings</h2>';
+                echo '<form method="post" action="options.php">';
+                settings_fields('export_settings_group');
+                do_settings_sections('export_settings');
+                submit_button();
+                echo '</form>'; ?>
+                <!-- Export Button -->
+                <h2>Export Settings</h2>
+                <form method="post" action="">
+                    <?php wp_nonce_field('export_settings', 'export_nonce'); ?>
+                        <input type="submit" 
+                        name="export_settings" 
+                        class="button button-primary" 
+                        value="Export to JSON"
+                        >
+                </form>
+
+                <!-- Import Button -->
+                <h2>Import Settings</h2>
+                <form method="post" enctype="multipart/form-data" action="">
+                    <?php wp_nonce_field('import_settings', 'import_nonce'); ?>
+                        <input type="file" 
+                        name="settings_file" 
+                        accept=".json" 
+                        required
+                        >
+                        <input type="submit" 
+                        name="import_settings" 
+                        class="button button-primary" 
+                        value="Import from JSON"
+                        >
+                </form><?php
+                    }
+                    ?>
+                </div> 
     </div>
     <?php
 }
+
+//GET All option to Export
+add_action('admin_init', 'handle_settings_export');
+function handle_settings_export() {
+    if (isset($_POST['export_settings']) && check_admin_referer('export_settings', 'export_nonce')) {
+        $options = [
+            'custom_email' => get_option('custom_email'),
+            'custom_phone' => get_option('custom_phone'),
+            'custom_whatsapp' => get_option('custom_whatsapp'),
+            'custom_bg_color' => get_option('custom_bg_color'),
+            'custom_font_size' => get_option('custom_font_size'),
+            'custom_font_color' => get_option('custom_font_color'),
+            'custom_top_bar_height' => get_option('custom_top_bar_height'),
+            'top_social_color' => get_option('top_social_color'),
+            'fb_link' => get_option('fb_link'),
+            'linkedin_link' => get_option('linkedin_link'),
+            'tube_link' => get_option('tube_link'),
+            'twiter_link' => get_option('twiter_link'),
+            'skype_link' => get_option('skype_link'),
+            'toggle_switch' => get_option('toggle_switch'),
+            'custom_header_background' => get_option('custom_header_background'),
+            'header_border_bottom' => get_option('header_border_bottom'),
+            'border_background' => get_option('border_background'),
+            'button_text' => get_option('button_text'),
+            'menu_font_size' => get_option('menu_font_size'),
+            'menu_space' => get_option('menu_space'),
+            'site_logo' => get_option('site_logo'),
+            'custom_logo_size' => get_option('custom_logo_size'),
+            'custom_logo_padding' => get_option('custom_logo_padding'),
+            'button_background' => get_option('button_background'),
+            'button_text_color' => get_option('button_text_color'),
+            'button_padding' => get_option('button_padding'),
+            'button_font_size' => get_option('button_font_size'),
+            'button_border' => get_option('button_border'),
+            'button_radius' => get_option('button_radius'),
+            'button_border_color' => get_option('button_border_color'),
+            'button_font_family' => get_option('button_font_family'),
+            'button_switch' => get_option('button_switch'),          
+        ];
+
+        header('Content-Disposition: attachment; filename="settings-export.json"');
+        header('Content-Type: application/json');
+        echo json_encode($options, JSON_PRETTY_PRINT);
+        exit;
+    }
+}
+
+function my_admin_notices() {
+    settings_errors('general');
+}
+add_action('admin_notices', 'my_admin_notices');
+
+
 
 // Register settings
 add_action('admin_init', 'theme_register_settings');
@@ -66,9 +153,9 @@ add_action('admin_init', 'theme_register_settings');
 function theme_register_settings() {
 
     //For General Page
-    register_setting('theme_settings_group', 'theme_fields');
-    register_setting('theme_settings_group', 'theme_fields1');
-    register_setting('theme_settings_group', 'theme_fields2');
+    register_setting('theme_settings_group', 'custom_email');
+    register_setting('theme_settings_group', 'custom_phone');
+    register_setting('theme_settings_group', 'custom_whatsapp');
     register_setting('theme_settings_group', 'custom_bg_color'); 
     register_setting('theme_settings_group', 'custom_font_color'); 
     register_setting('theme_settings_group', 'custom_font_size');
@@ -105,7 +192,7 @@ function theme_register_settings() {
         'advanced_settings'
     );
 
-    //For Other Settings Page
+    //For Logo and Button Settings Page
     register_setting('other_settings_group', 'site_logo');
     register_setting('other_settings_group', 'custom_logo_size');
     register_setting('other_settings_group', 'custom_logo_padding');
@@ -127,6 +214,18 @@ function theme_register_settings() {
         'other_settings'
     );
 
+    //For Import and Export page
+    register_setting('export_settings_group', 'export_settings');
+
+
+    add_settings_section(
+        'other_section',
+        '',
+        null,
+        'other_settings'
+    );
+
+
 
 /********************************** ALL FIELDS GENERAL SETTINGS *******************************************/
     //For Top bar Switch ON-OFF
@@ -140,25 +239,25 @@ function theme_register_settings() {
 			'label_for' => 'toggle_switch'
 		]
     );
-    //For theme_field Email
+    //For Email Fields
     add_settings_field(
-        'theme_fields', 
+        'custom_email', 
         'Email Address:', 
         'theme_field_callback', 
         'theme_customization', 
         'theme_main_section'
     );
-    //For theme_fields Phone
+    //For Phone
     add_settings_field(
-        'theme_fields1',
+        'custom_phone',
         'Phone Number:',
         'theme_field_callback1',
         'theme_customization', 
         'theme_main_section'
     );
-    //For theme_fields WhatsApp
+    //For WhatsApp
     add_settings_field(
-        'theme_fields2',
+        'custom_whatsapp',
         'Whats App:',
         'theme_field_callback2',
         'theme_customization', 
@@ -436,11 +535,11 @@ function toggle_switch_callback(){
 }
 //For theme_field Email
 function theme_field_callback(){
-    $value = get_option('theme_fields', '');
+    $value = get_option('custom_email', '');
     ?>
      <div class='jumbotron'>        
         <input type="text" 
-        name="theme_fields" 
+        name="custom_email" 
         value="<?php echo esc_attr($value); ?>" 
         class="form-control" 
         placeholder="Email" />
@@ -449,11 +548,11 @@ function theme_field_callback(){
 }
 //For theme_fields Phone
 function theme_field_callback1(){
-    $value = get_option('theme_fields1', '');
+    $value = get_option('custom_phone', '');
     ?>
      <div class='jumbotron'>        
         <input type="text" 
-        name="theme_fields1" 
+        name="custom_phone" 
         value="<?php echo esc_attr($value); ?>" 
         class="form-control" 
         placeholder="Phone" />
@@ -462,11 +561,11 @@ function theme_field_callback1(){
 }
 //For theme_fields WhatsApp
 function theme_field_callback2(){
-    $value = get_option('theme_fields2', '');
+    $value = get_option('custom_whatsapp', '');
     ?>
      <div class='jumbotron'>        
         <input type="text"
-         name="theme_fields2"
+         name="custom_whatsapp"
          value="<?php echo esc_attr($value); ?>"
          class="form-control"
          placeholder="Whats App" />

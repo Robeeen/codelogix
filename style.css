@@ -1012,6 +1012,10 @@ button{
 .top_left , .top_middle, .top_right{
 	width: 12%;
 }
+
+.top_middle{
+	text-align: center;
+}
 .top_section{   
     text-align: center;
 	display:flex;	

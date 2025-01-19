@@ -30,17 +30,17 @@
 			<div class="inner_top_section">
 				<div class="top_left">
 					<i class="fa fa-envelope"></i> 
-					<?php echo get_option('theme_fields');?>			
+					<?php echo get_option('custom_email');?>			
 				</div>
 
 				<div class="top_middle">
 					<i class="fa fa-phone"></i> 
-					<?php echo get_option('theme_fields1');?>
+					<?php echo get_option('custom_phone');?>
 				</div>
 
 				<div class="top_right">
 					<i class="fab fa-whatsapp"></i> 
-					<?php echo get_option('theme_fields2');?>
+					<?php echo get_option('custom_whatsapp');?>
 				</div>
 
 				<div class="top_social"> 
