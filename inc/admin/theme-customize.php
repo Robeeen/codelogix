@@ -1060,10 +1060,6 @@ function handle_settings_export() {
     }
 }
 
-add_action('admin_notices', 'my_admin_notices');
-function my_admin_notices() {
-    settings_errors('export_import');
-}
 
 
 //FUnction to Import from a File
@@ -1072,8 +1068,8 @@ add_action('admin_init', 'handle_settings_import');
 function handle_settings_import(){
     if(isset($_GET['import_settings']) && check_admin_referer('import_settings', 'import_nonce')){
         //If File is not empty
-        if(!empty($_FILES['settings-export']['tmp_name'])){
-            $file_content = file_get_contents($_FILES['settings-export']['tmp_name']);
+        if(!empty($_FILES['settings_file']['tmp_name'])){
+            $file_content = file_get_contents($_FILES['settings_file']['tmp_name']);
             $settings = json_decode($file_content, true);
         }
 
@@ -1098,4 +1094,8 @@ function handle_settings_import(){
 }
 
 
+add_action('admin_notices', 'my_admin_notices');
+function my_admin_notices() {
+    settings_errors('export_import');
+}
 
