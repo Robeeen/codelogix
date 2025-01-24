@@ -16,20 +16,25 @@ function theme_create_menu() {
 
 function theme_settings_page(){
     ?>
-    <div class="wrap">
-        <h1><?php esc_html_e( 'Theme Customization Page' ); ?></h1>
+<div class="wrap">
+    <h1><?php esc_html_e( 'Theme Customization Page' ); ?></h1>
 
-        <h3><?php esc_html_e( 'Header Section Customization' ); ?></h3>
-        <!-----------CREATING NEW TABS ON ADD MENU PAGES------------------>
-        <h2 class="nav-tab-wrapper">
-            <a href="?page=theme_customization&tab=general" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'general') ? 'nav-tab-active' : ''; ?>">General</a>
-            <a href="?page=theme_customization&tab=advanced" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'advanced') ? 'nav-tab-active' : ''; ?>">Advanced</a>
-            <a href="?page=theme_customization&tab=others" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'others') ? 'nav-tab-active' : ''; ?>">Others</a>
-            <a href="?page=theme_customization&tab=export_import" class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'export_import') ? 'nav-tab-active' : ''; ?>">Export Import</a>
-        </h2>  
+    <h3><?php esc_html_e( 'Header Section Customization' ); ?></h3>
+    <!-----------CREATING NEW TABS ON ADD MENU PAGES------------------>
+    <h2 class="nav-tab-wrapper">
+        <a href="?page=theme_customization&tab=general"
+            class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'general') ? 'nav-tab-active' : ''; ?>">General</a>
+        <a href="?page=theme_customization&tab=advanced"
+            class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'advanced') ? 'nav-tab-active' : ''; ?>">Advanced</a>
+        <a href="?page=theme_customization&tab=others"
+            class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'others') ? 'nav-tab-active' : ''; ?>">Others</a>
+        <a href="?page=theme_customization&tab=export_import"
+            class="nav-tab <?php echo (isset($_GET['tab']) && $_GET['tab'] == 'export_import') ? 'nav-tab-active' : ''; ?>">Export
+            Import</a>
+    </h2>
 
-        
-        <div class="tab-content">
+
+    <div class="tab-content">
         <?php
             $tab = isset($_GET['tab']) ? $_GET['tab'] : 'general';
 
@@ -62,39 +67,45 @@ function theme_settings_page(){
                 echo '<form method="post" action="options.php">';
                 settings_fields('export_settings_group');
                 do_settings_sections('export_settings');
-                submit_button();
+                //submit_button();
                 echo '</form>'; ?>
-                <!-- Export Button -->
-                <h2>Export all Settings Config</h2>
-                <form method="post" action="">
-                    <?php wp_nonce_field('export_settings', 'export_nonce'); ?>
-                        <input type="submit" 
-                        name="export_settings" 
-                        class="button button-primary" 
-                        value="Export to JSON"
-                        >
-                </form>
+        <!-- Export Button -->
+        <br />
+        <h2>Export all Settings Config:</h2>
+        <form method="post" action="">
+            <?php wp_nonce_field('export_settings', 'export_nonce'); ?>
+            <input type="submit" name="export_settings" class="button button-primary" value="Export to JSON">
+        </form>
 
-                <!-- Import Button -->
-                <h2>Import Settings</h2>
-                <form method="post" enctype="multipart/form-data" action="">
-                    <?php wp_nonce_field('import_settings', 'import_nonce'); ?>
-                        <input type="file" 
-                        name="settings_file" 
-                        accept=".json" 
-                        required
-                        >
-                        <input type="submit" 
-                        name="import_settings" 
-                        class="button button-primary" 
-                        value="Import from JSON"
-                        >
-                </form><?php
+        <!-- Import Button -->
+        <br />
+        <h2>Import Settings:</h2>
+        <form method="post" enctype="multipart/form-data" action="">
+            <?php wp_nonce_field('import_settings', 'import_nonce'); ?>
+            <input type="file" name="settings_file" accept=".json" required>
+            <input type="submit" name="import_settings" class="button button-primary" value="Import from JSON">
+        </form>
+
+        <!----------Reset Button--------------->
+        <br />
+        <h2>Reset All Settings:</h2>
+        <form method="post" action="options.php">
+        <?php wp_nonce_field('reset_settings', 'reset_nonce'); ?>
+            <button type="submit" 
+                    name="reset_settings"
+                    value="1" 
+                    class="button button-secondary"
+                    onclick="return confirm('Are you sure you want to reset all settings to their default values?');"
+                    >
+                Reset Settings
+            </button>
+        </form>
+        <?php
                     }
                     ?>
-                </div> 
     </div>
-    <?php
+</div>
+<?php
 }
 
 
@@ -472,149 +483,111 @@ function theme_register_settings() {
 function toggle_switch_callback(){
     $value = get_option('toggle_switch');
     ?>
-     <label class="switch">        
-        <input type="checkbox" 
-        name="toggle_switch" 
-        value = "1"
-        <?php if($value == '1'){
+<label class="switch">
+    <input type="checkbox" name="toggle_switch" value="1" <?php if($value == '1'){
             echo ' checked';
-        };?>
-        />
-        
-        <span class="slider"></span>
-    </label>
+        };?> />
+
+    <span class="slider"></span>
+</label>
 <?php
 }
 //For theme_field Email
 function theme_field_callback(){
     $value = get_option('custom_email', '');
     ?>
-     <div class='jumbotron'>        
-        <input type="text" 
-        name="custom_email" 
-        value="<?php echo esc_attr($value); ?>" 
-        class="form-control" 
+<div class='jumbotron'>
+    <input type="text" name="custom_email" value="<?php echo esc_attr($value); ?>" class="form-control"
         placeholder="Email" />
-    </div>
+</div>
 <?php
 }
 //For theme_fields Phone
 function theme_field_callback1(){
     $value = get_option('custom_phone', '');
     ?>
-     <div class='jumbotron'>        
-        <input type="text" 
-        name="custom_phone" 
-        value="<?php echo esc_attr($value); ?>" 
-        class="form-control" 
+<div class='jumbotron'>
+    <input type="text" name="custom_phone" value="<?php echo esc_attr($value); ?>" class="form-control"
         placeholder="Phone" />
-    </div>
+</div>
 <?php
 }
 //For theme_fields WhatsApp
 function theme_field_callback2(){
     $value = get_option('custom_whatsapp', '');
     ?>
-     <div class='jumbotron'>        
-        <input type="text"
-         name="custom_whatsapp"
-         value="<?php echo esc_attr($value); ?>"
-         class="form-control"
-         placeholder="Whats App" />
-    </div>
+<div class='jumbotron'>
+    <input type="text" name="custom_whatsapp" value="<?php echo esc_attr($value); ?>" class="form-control"
+        placeholder="Whats App" />
+</div>
 <?php
 }
 //Function for Color Picker to change background of Header Top.
 function custom_bg_color_callback() {
     $color = get_option('custom_bg_color', '#ffffff'); // Default to white
     ?>
-    <input type="text" 
-    id="custom_bg_color" 
-    name="custom_bg_color" 
-    value="<?php echo esc_attr($color);?>"
-    class="custom-color-field" /><!-----This 'custom-color-field' class generate Color Picker-->
+<input type="text" id="custom_bg_color" name="custom_bg_color" value="<?php echo esc_attr($color);?>"
+    class="custom-color-field" />
+<!-----This 'custom-color-field' class generate Color Picker-->
 <?php
 }
 //Function for Color Picker to change Font-Color of Header Top.
 function custom_font_color_callback(){
     $color = get_option('custom_font_color', '#ffffff'); // Default to white
     ?>
-    <input type="text" 
-    id="custom_font_color" 
-    name="custom_font_color" 
-    value="<?php echo esc_attr($color);?>"
-    class="custom-color-field" /><!-----This 'custom-color-field' class generate Color Picker-->
+<input type="text" id="custom_font_color" name="custom_font_color" value="<?php echo esc_attr($color);?>"
+    class="custom-color-field" />
+<!-----This 'custom-color-field' class generate Color Picker-->
 <?php
 }
 //Function for Color Picker to change Font-Size of Header Top.
 function custom_font_size_callback(){
     $font_size = get_option('custom_font_size', ''); 
     ?>
-    <input type="number" 
-    id="custom_font_size" 
-    name="custom_font_size" 
-    value="<?php echo esc_attr($font_size);?>" /> 
+<input type="number" id="custom_font_size" name="custom_font_size" value="<?php echo esc_attr($font_size);?>" />
 <?php
 }
 //Function for Top Nav Bar Size - height control
 function custom_top_nav_callback(){
     $size = get_option('custom_top_bar_height', '');
     ?>
-    <input type="number" 
-    id="custom_top_bar_height" 
-    name="custom_top_bar_height" 
-    value="<?php echo esc_attr($size);?>" />   
+<input type="number" id="custom_top_bar_height" name="custom_top_bar_height" value="<?php echo esc_attr($size);?>" />
 <?php
 }
 //Top Nav Social Icons Color settings:
 function top_social_color_callback(){
     $color = get_option('top_social_color', '#ffffff');
     ?>
-    <input type="text" 
-    id="top_social_color" 
-    name="top_social_color" 
-    value="<?php echo esc_attr($color);?>"
-    class="custom-color-field" />   
+<input type="text" id="top_social_color" name="top_social_color" value="<?php echo esc_attr($color);?>"
+    class="custom-color-field" />
 <?php
 }
 //Facebook Link
 function fb_link_callback(){
     $fb = get_option('fb_link');
     ?>
-    <input type="text"      
-    name="fb_link" 
-    value="<?php echo esc_attr($fb);?>"
-     />   
+<input type="text" name="fb_link" value="<?php echo esc_attr($fb);?>" />
 <?php
 }
 //YOutube Link
 function tube_link_callback(){
     $fb = get_option('tube_link');
     ?>
-    <input type="text"      
-    name="tube_link" 
-    value="<?php echo esc_attr($fb);?>"
-     />   
+<input type="text" name="tube_link" value="<?php echo esc_attr($fb);?>" />
 <?php
 }
 //Linkedin Link
 function linkedin_link_callback(){
     $fb = get_option('linkedin_link');
     ?>
-    <input type="text"      
-    name="linkedin_link" 
-    value="<?php echo esc_attr($fb);?>"
-     />   
+<input type="text" name="linkedin_link" value="<?php echo esc_attr($fb);?>" />
 <?php
 }
 //Twitter Link
 function twiter_link_callback(){
     $fb = get_option('twiter_link');
     ?>
-    <input type="text"      
-    name="twiter_link" 
-    value="<?php echo esc_attr($fb);?>"
-     />   
+<input type="text" name="twiter_link" value="<?php echo esc_attr($fb);?>" />
 <?php
 }
 
@@ -622,10 +595,7 @@ function twiter_link_callback(){
 function skype_link_callback(){
     $fb = get_option('skype_link');
     ?>
-    <input type="text"      
-    name="skype_link" 
-    value="<?php echo esc_attr($fb);?>"
-     />   
+<input type="text" name="skype_link" value="<?php echo esc_attr($fb);?>" />
 <?php
 }
 
@@ -634,27 +604,20 @@ function skype_link_callback(){
 function theme_header_background_color_callback(){
     $value = get_option('custom_header_background', '');
     ?>
-             
-        <input type="text" 
-        id="custom_header_background"
-        name="custom_header_background" 
-        value="<?php echo esc_attr($value);?>" 
-        class="custom-color-field" 
-         />
-    
+
+<input type="text" id="custom_header_background" name="custom_header_background" value="<?php echo esc_attr($value);?>"
+    class="custom-color-field" />
+
 <?php
 }
 //Header Border Bottom
 function theme_header_border_bottom_callback(){
     $value = get_option('header_border_bottom', '');
     ?>
-             
-        <input type="number"         
-        name="header_border_bottom" 
-        value="<?php echo esc_attr($value);?>" 
-        class="form-control" 
-        placeholder="Border Bottom" />
-   
+
+<input type="number" name="header_border_bottom" value="<?php echo esc_attr($value);?>" class="form-control"
+    placeholder="Border Bottom" />
+
 <?php
 }
 
@@ -662,14 +625,10 @@ function theme_header_border_bottom_callback(){
 function theme_border_background_callback(){
     $value = get_option('border_background', '#ffffff');
     ?>
-            
-        <input type="text" 
-        id="border_background"        
-        name="border_background" 
-        value="<?php echo esc_attr($value);?>" 
-        class="custom-color-field" 
-         />
-    
+
+<input type="text" id="border_background" name="border_background" value="<?php echo esc_attr($value);?>"
+    class="custom-color-field" />
+
 <?php
 }
 
@@ -677,13 +636,9 @@ function theme_border_background_callback(){
 function button_text_callback(){
     $value = get_option('button_text', '');
     ?>
-            
-        <input type="text"        
-        name="button_text" 
-        value="<?php echo esc_attr($value);?>" 
-        class="form-control" 
-        placeholder="Button Text"
-         />    
+
+<input type="text" name="button_text" value="<?php echo esc_attr($value);?>" class="form-control"
+    placeholder="Button Text" />
 <?php
 }
 
@@ -691,26 +646,18 @@ function button_text_callback(){
 function menu_font_size_callback(){
     $value = get_option('menu_font_size', '');
     ?>
-            
-        <input type="number"        
-        name="menu_font_size" 
-        value="<?php echo esc_attr($value);?>" 
-        class="form-control" 
-        placeholder="Font Size"
-         />    
+
+<input type="number" name="menu_font_size" value="<?php echo esc_attr($value);?>" class="form-control"
+    placeholder="Font Size" />
 <?php
 }
 
 //header NAV Menu Item Space
 function menu_space_callback(){
     $value = get_option('menu_space', '');
-    ?>            
-        <input type="number"        
-        name="menu_space" 
-        value="<?php echo esc_attr($value);?>" 
-        class="form-control" 
-        placeholder="Space Right"
-         />    
+    ?>
+<input type="number" name="menu_space" value="<?php echo esc_attr($value);?>" class="form-control"
+    placeholder="Space Right" />
 <?php
 }
 
@@ -718,14 +665,14 @@ function menu_space_callback(){
 //header Logo Uploading
 function site_logo_callback(){
     $site_logo = get_option('site_logo');
-    ?>            
-    <div>
-        <input type="text" id="site_logo" name="site_logo" value="<?php echo esc_url($site_logo); ?>" class="regular-text">
-        <button class="button site-logo-upload">Upload Logo</button>
-        <?php if ($site_logo) : ?>
-            <br><img src="<?php echo esc_attr($site_logo); ?>" style="max-width: 150px; margin-top: 10px;">
-        <?php endif; ?>
-    </div>
+    ?>
+<div>
+    <input type="text" id="site_logo" name="site_logo" value="<?php echo esc_url($site_logo); ?>" class="regular-text">
+    <button class="button site-logo-upload">Upload Logo</button>
+    <?php if ($site_logo) : ?>
+    <br><img src="<?php echo esc_attr($site_logo); ?>" style="max-width: 150px; margin-top: 10px;">
+    <?php endif; ?>
+</div>
 <?php
 }
 
@@ -733,25 +680,19 @@ function site_logo_callback(){
 function theme_logo_callback(){
     $value = get_option('custom_logo_size', '100');
     ?>
-            
-        <input type="number" 
-        name="custom_logo_size" 
-        value="<?php echo esc_attr($value); ?>" 
-        class="form-control" 
-        placeholder="Logo Size" />
-   
+
+<input type="number" name="custom_logo_size" value="<?php echo esc_attr($value); ?>" class="form-control"
+    placeholder="Logo Size" />
+
 <?php
 }
 //Header Logo Padding 
 function theme_logo_padding_callback(){
     $value = get_option('custom_logo_padding', '');
-    ?>      
-        <input type="number" 
-        name="custom_logo_padding" 
-        value="<?php echo esc_attr($value); ?>" 
-        class="form-control" 
-        placeholder="Logo Size" />
-   
+    ?>
+<input type="number" name="custom_logo_padding" value="<?php echo esc_attr($value); ?>" class="form-control"
+    placeholder="Logo Size" />
+
 <?php
 }
 
@@ -759,14 +700,10 @@ function theme_logo_padding_callback(){
 function button_background_callback(){
     $value = get_option('button_background', '#ffffff');
     ?>
-            
-        <input type="text" 
-        id="button_background"        
-        name="button_background" 
-        value="<?php echo esc_attr($value);?>" 
-        class="custom-color-field" 
-         />
-    
+
+<input type="text" id="button_background" name="button_background" value="<?php echo esc_attr($value);?>"
+    class="custom-color-field" />
+
 <?php
 }
 
@@ -775,40 +712,30 @@ function button_background_callback(){
 function button_text_color_callback(){
     $value = get_option('button_text_color', '#ffffff');
     ?>
-            
-        <input type="text" 
-        id="button_text_color"        
-        name="button_text_color" 
-        value="<?php echo esc_attr($value);?>" 
-        class="custom-color-field" 
-         />
-    
+
+<input type="text" id="button_text_color" name="button_text_color" value="<?php echo esc_attr($value);?>"
+    class="custom-color-field" />
+
 <?php
 }
 
 //Button Padding 
 function button_padding_callback(){
     $value = get_option('button_padding', '');
-    ?>      
-        <input type="number" 
-        name="button_padding" 
-        value="<?php echo esc_attr($value); ?>" 
-        class="form-control" 
-        placeholder="Button Padding" />
-   
+    ?>
+<input type="number" name="button_padding" value="<?php echo esc_attr($value); ?>" class="form-control"
+    placeholder="Button Padding" />
+
 <?php
 }
 
 //Button Padding 
 function button_font_size_callback(){
     $value = get_option('button_font_size', '');
-    ?>      
-        <input type="number" 
-        name="button_font_size" 
-        value="<?php echo esc_attr($value); ?>" 
-        class="form-control" 
-        placeholder="Button Font Size" />
-   
+    ?>
+<input type="number" name="button_font_size" value="<?php echo esc_attr($value); ?>" class="form-control"
+    placeholder="Button Font Size" />
+
 <?php
 }
 
@@ -816,40 +743,30 @@ function button_font_size_callback(){
 //Button Border 
 function button_border_callback(){
     $value = get_option('button_border', '');
-    ?>      
-        <input type="number" 
-        name="button_border" 
-        value="<?php echo esc_attr($value); ?>" 
-        class="form-control" 
-        placeholder="Button Border" />
-   
+    ?>
+<input type="number" name="button_border" value="<?php echo esc_attr($value); ?>" class="form-control"
+    placeholder="Button Border" />
+
 <?php
 }
 
 //Button Border Radius
 function button_radius_callback(){
     $value = get_option('button_radius', '');
-    ?>      
-        <input type="number" 
-        name="button_radius" 
-        value="<?php echo esc_attr($value); ?>" 
-        class="form-control" 
-        placeholder="Button Radius" />
-   
+    ?>
+<input type="number" name="button_radius" value="<?php echo esc_attr($value); ?>" class="form-control"
+    placeholder="Button Radius" />
+
 <?php
 }
 
 //Button Border 
 function button_border_color_callback(){
     $value = get_option('button_border_color', '#ffffff');
-    ?>      
-        <input type="text" 
-        id="button_border_color"
-        name="button_border_color" 
-        value="<?php echo esc_attr($value); ?>" 
-        class="custom-color-field" 
-         />
-   
+    ?>
+<input type="text" id="button_border_color" name="button_border_color" value="<?php echo esc_attr($value); ?>"
+    class="custom-color-field" />
+
 <?php
 }
 //List of All Fonts family Array
@@ -904,17 +821,13 @@ add_action('wp_head', 'load_selected_google_font');
 function button_switch_callback(){
     $value = get_option('button_switch');
     ?>
-     <label class="switch">        
-        <input type="checkbox" 
-        name="button_switch" 
-        value = "1"
-        <?php if($value == '1'){
+<label class="switch">
+    <input type="checkbox" name="button_switch" value="1" <?php if($value == '1'){
             echo ' checked';
-        };?>
-        />
-        
-        <span class="slider"></span>
-    </label>
+        };?> />
+
+    <span class="slider"></span>
+</label>
 <?php
 }
 
@@ -947,70 +860,118 @@ function display_top_bar_height(){
 
    
     ?>
-   <style>
-       .top_section {
-           padding: <?php echo esc_attr($height); ?>px 0px;    
-           font-size: <?php echo esc_attr($font_size);?>px;
-           color:<?php echo esc_attr($font_color);?>;
-           background:<?php echo esc_attr($top_backgrd);?>; 
-           display: <?php if($toggle_switch !== "1"){
-            echo 'none';
-           }?>
-       }
-       .top_social {
-           color: <?php echo esc_attr($social_color);?>;           
-       }
-       .top_social a:link, a:hover, a:active{
-           color: <?php echo esc_attr($social_color);?>;      
-       }
-       .top_social a:visited{
-           color: <?php echo esc_attr($social_color);?> !important; 
-       }
-       .custom-logo img {
-           max-width: <?php echo esc_attr($logo_width);?>px;
-           height: auto;
-           padding-top: <?php echo esc_attr($logo_padding);?>px;
-           padding-bottom: <?php echo esc_attr($logo_padding);?>px;
-       }
-       #masthead{
-           background:<?php echo esc_attr($header_backgrd);?>; 
-           border-bottom:<?php echo esc_attr($header_border);?>px solid <?php echo esc_attr($border_backgr);?>; 
-       }
-       .main-navigation a, 
-        .menu-primary-menu-container ul li a {
-            font-size: <?php echo esc_attr($nav_font_size); ?>px;
-            padding-right: <?php echo esc_attr($nav_space); ?>px;       
-        }
-        .the_header li a:link, a:visited, a:active {
-            color: #000000 !important;
-        }   
-        .the_header li a:hover{
-            color: #000000;
-        }
-        .site-button button {
-            background:<?php echo esc_attr($button_background); ?>;
-            color: <?php echo esc_attr($button_text_color); ?>;
-            padding: <?php echo esc_attr($button_padding); ?>px;
-            font-size: <?php echo esc_attr($button_font_size); ?>px;
-            border: <?php echo esc_attr($button_border); ?>px solid <?php echo esc_attr($button_border_color); ?>;
-            border-radius: <?php echo esc_attr($button_radius); ?>px;
-            font-family: <?php echo esc_attr($button_font_family); ?>;
-            display: <?php if($button_switch !== "1"){
-                            echo 'none';
-                        }?> !important;
-        }
-        .site-navigation{
-            width: <?php if($button_switch !== "1"){
-                            echo '70%';
-                        }?>;
-        }
-        .site-button{
-            width: <?php if($button_switch !== "1"){
-                            echo '0%';
-                        }?>;
-        }
-   </style>
-   <?php
+<style>
+.top_section {
+    padding: <?php echo esc_attr($height);
+    ?>px 0px;
+    font-size: <?php echo esc_attr($font_size);
+    ?>px;
+    color: <?php echo esc_attr($font_color);
+    ?>;
+    background: <?php echo esc_attr($top_backgrd);
+    ?>;
+
+    display: <?php if($toggle_switch !=="1") {
+        echo 'none';
+    }
+
+    ?>
+}
+
+.top_social {
+    color: <?php echo esc_attr($social_color);
+    ?>;
+}
+
+.top_social a:link,
+a:hover,
+a:active {
+    color: <?php echo esc_attr($social_color);
+    ?>;
+}
+
+.top_social a:visited {
+    color: <?php echo esc_attr($social_color);
+    ?> !important;
+}
+
+.custom-logo img {
+    max-width: <?php echo esc_attr($logo_width);
+    ?>px;
+    height: auto;
+    padding-top: <?php echo esc_attr($logo_padding);
+    ?>px;
+    padding-bottom: <?php echo esc_attr($logo_padding);
+    ?>px;
+}
+
+#masthead {
+    background: <?php echo esc_attr($header_backgrd);
+    ?>;
+    border-bottom: <?php echo esc_attr($header_border);
+    ?>px solid <?php echo esc_attr($border_backgr);
+    ?>;
+}
+
+.main-navigation a,
+.menu-primary-menu-container ul li a {
+    font-size: <?php echo esc_attr($nav_font_size);
+    ?>px;
+    padding-right: <?php echo esc_attr($nav_space);
+    ?>px;
+}
+
+.the_header li a:link,
+a:visited,
+a:active {
+    color: #000000 !important;
+}
+
+.the_header li a:hover {
+    color: #000000;
+}
+
+.site-button button {
+    background: <?php echo esc_attr($button_background);
+    ?>;
+    color: <?php echo esc_attr($button_text_color);
+    ?>;
+    padding: <?php echo esc_attr($button_padding);
+    ?>px;
+    font-size: <?php echo esc_attr($button_font_size);
+    ?>px;
+    border: <?php echo esc_attr($button_border);
+    ?>px solid <?php echo esc_attr($button_border_color);
+    ?>;
+    border-radius: <?php echo esc_attr($button_radius);
+    ?>px;
+    font-family: <?php echo esc_attr($button_font_family);
+    ?>;
+
+    display: <?php if($button_switch !=="1") {
+        echo 'none';
+    }
+
+    ?> !important;
+}
+
+.site-navigation {
+    width: <?php if($button_switch !=="1") {
+        echo '70%';
+    }
+
+    ?>;
+}
+
+.site-button {
+    width: <?php if($button_switch !=="1") {
+        echo '0%';
+    }
+
+    ?>;
+}
+</style>
+<?php
 }
 
 /*********************************EXPORT - IMPORT ********************************************/
@@ -1090,7 +1051,7 @@ function handle_settings_import(){
                     'error',
                 );
             }
-            //If content is ok then decode to json
+            //If content is ok then decode settings config to json
             $settings = json_decode($file_content, true);
             
         }
@@ -1135,3 +1096,5 @@ function my_admin_notices() {
     settings_errors('export_import');
 }
 
+//Reset Settings File
+require_once('reset_settings/reset_settings.php');
