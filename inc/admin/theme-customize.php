@@ -67,37 +67,46 @@ function theme_settings_page(){
                 do_settings_sections('export_settings');
                 //submit_button();
                 echo '</form>'; ?>
-        <!-- Export Button -->
-        <br />
-        <h2>Export all Settings Config:</h2>
-        <form method="post" action="">
-            <?php wp_nonce_field('export_settings', 'export_nonce'); ?>
-            <input type="submit" name="export_settings" class="button button-primary" value="Export to JSON">
-        </form>
+                    <!-- Export Button -->
+                    <br />
+                    <h2>Export all Settings Config:</h2>
+                    <form method="post" action="">
+                        <?php wp_nonce_field('export_settings', 'export_nonce'); ?>
+                        <input type="submit" 
+                               name="export_settings" 
+                               class="button button-primary" 
+                               value="Export to JSON">
+                    </form>
 
-        <!-- Import Button -->
-        <br />
-        <h2>Import Settings:</h2>
-        <form method="post" enctype="multipart/form-data" action="">
-            <?php wp_nonce_field('import_settings', 'import_nonce'); ?>
-            <input type="file" name="settings_file" accept=".json" required>
-            <input type="submit" name="import_settings" class="button button-primary" value="Import from JSON">
-        </form>
+                    <!-- Import Button -->
+                    <br />
+                    <h2>Import Settings:</h2>
+                    <form method="post" enctype="multipart/form-data" action="">
+                        <?php wp_nonce_field('import_settings', 'import_nonce'); ?>
+                        <input  type="file" 
+                                name="settings_file" 
+                                accept=".json" 
+                                required>
+                        <input  type="submit" 
+                                name="import_settings" 
+                                class="button button-primary" 
+                                value="Import from JSON">
+                    </form>
 
-        <!----------Reset Button--------------->
-        <br />
-        <h2>Reset All Settings:</h2>
-        <form method="post" action="options.php">
-        <?php wp_nonce_field('reset_settings', 'reset_nonce'); ?>
-            <button type="submit" 
-                    name="reset_settings"
-                    value="1" 
-                    class="button button-secondary"
-                    onclick="return confirm('Are you sure you want to reset all settings to their default values?');"
-                    >
-                Reset Settings
-            </button>
-        </form>
+                    <!----------Reset Button--------------->
+                    <br />
+                    <h2>Reset All Settings:</h2>
+                    <form method="post" action="options.php">
+                    <?php wp_nonce_field('reset_settings', 'reset_nonce'); ?>
+                        <button type="submit" 
+                                name="reset_settings"
+                                value="1" 
+                                class="button button-secondary"
+                                onclick="return confirm('Are you sure you want to reset all settings to their default values?');"
+                                >
+                            Reset Settings
+                        </button>
+                    </form>
         <?php
                     }
                     ?>
@@ -860,14 +869,10 @@ function display_top_bar_height(){
     ?>
 <style>
 .top_section {
-    padding: <?php echo esc_attr($height);
-    ?>px 0px;
-    font-size: <?php echo esc_attr($font_size);
-    ?>px;
-    color: <?php echo esc_attr($font_color);
-    ?>;
-    background: <?php echo esc_attr($top_backgrd);
-    ?>;
+    padding: <?php echo esc_attr($height);?>px 0px;
+    font-size: <?php echo esc_attr($font_size);?>px;
+    color: <?php echo esc_attr($font_color);?>;
+    background: <?php echo esc_attr($top_backgrd);?>;
 
     display: <?php if($toggle_switch !=="1") {
         echo 'none';
@@ -877,46 +882,36 @@ function display_top_bar_height(){
 }
 
 .top_social {
-    color: <?php echo esc_attr($social_color);
-    ?>;
+    color: <?php echo esc_attr($social_color);?>;
 }
 
 .top_social a:link,
 a:hover,
 a:active {
-    color: <?php echo esc_attr($social_color);
-    ?>;
+    color: <?php echo esc_attr($social_color); ?>;
 }
 
 .top_social a:visited {
-    color: <?php echo esc_attr($social_color);
-    ?> !important;
+    color: <?php echo esc_attr($social_color); ?> !important;
 }
 
 .custom-logo img {
-    max-width: <?php echo esc_attr($logo_width);
-    ?>px;
+    max-width: <?php echo esc_attr($logo_width);?>px;
     height: auto;
-    padding-top: <?php echo esc_attr($logo_padding);
-    ?>px;
-    padding-bottom: <?php echo esc_attr($logo_padding);
-    ?>px;
+    padding-top: <?php echo esc_attr($logo_padding);?>px;
+    padding-bottom: <?php echo esc_attr($logo_padding);?>px;
 }
 
 #masthead {
-    background: <?php echo esc_attr($header_backgrd);
-    ?>;
-    border-bottom: <?php echo esc_attr($header_border);
-    ?>px solid <?php echo esc_attr($border_backgr);
+    background: <?php echo esc_attr($header_backgrd);?>;
+    border-bottom: <?php echo esc_attr($header_border);?>px solid <?php echo esc_attr($border_backgr);
     ?>;
 }
 
 .main-navigation a,
 .menu-primary-menu-container ul li a {
-    font-size: <?php echo esc_attr($nav_font_size);
-    ?>px;
-    padding-right: <?php echo esc_attr($nav_space);
-    ?>px;
+    font-size: <?php echo esc_attr($nav_font_size);?>px;
+    padding-right: <?php echo esc_attr($nav_space);?>px;
 }
 
 .the_header li a:link,
@@ -930,21 +925,13 @@ a:active {
 }
 
 .site-button button {
-    background: <?php echo esc_attr($button_background);
-    ?>;
-    color: <?php echo esc_attr($button_text_color);
-    ?>;
-    padding: <?php echo esc_attr($button_padding);
-    ?>px;
-    font-size: <?php echo esc_attr($button_font_size);
-    ?>px;
-    border: <?php echo esc_attr($button_border);
-    ?>px solid <?php echo esc_attr($button_border_color);
-    ?>;
-    border-radius: <?php echo esc_attr($button_radius);
-    ?>px;
-    font-family: <?php echo esc_attr($button_font_family);
-    ?>;
+    background: <?php echo esc_attr($button_background);?>;
+    color: <?php echo esc_attr($button_text_color);?>;
+    padding: <?php echo esc_attr($button_padding);?>px;
+    font-size: <?php echo esc_attr($button_font_size);?>px;
+    border: <?php echo esc_attr($button_border);?>px solid <?php echo esc_attr($button_border_color);?>;
+    border-radius: <?php echo esc_attr($button_radius);?>px;
+    font-family: <?php echo esc_attr($button_font_family);?>;
 
     display: <?php if($button_switch !=="1") {
         echo 'none';
@@ -972,127 +959,14 @@ a:active {
 <?php
 }
 
-/*********************************EXPORT - IMPORT ********************************************/
-//GET All option to Export
-add_action('admin_init', 'handle_settings_export');
-function handle_settings_export() {
-    if (isset($_POST['export_settings']) && check_admin_referer('export_settings', 'export_nonce')) {
-        $options = [
-            'custom_email' => get_option('custom_email'),
-            'custom_phone' => get_option('custom_phone'),
-            'custom_whatsapp' => get_option('custom_whatsapp'),
-            'custom_bg_color' => get_option('custom_bg_color'),
-            'custom_font_size' => get_option('custom_font_size'),
-            'custom_font_color' => get_option('custom_font_color'),
-            'custom_top_bar_height' => get_option('custom_top_bar_height'),
-            'top_social_color' => get_option('top_social_color'),
-            'fb_link' => get_option('fb_link'),
-            'linkedin_link' => get_option('linkedin_link'),
-            'tube_link' => get_option('tube_link'),
-            'twiter_link' => get_option('twiter_link'),
-            'skype_link' => get_option('skype_link'),
-            'toggle_switch' => get_option('toggle_switch'),
-            'custom_header_background' => get_option('custom_header_background'),
-            'header_border_bottom' => get_option('header_border_bottom'),
-            'border_background' => get_option('border_background'),
-            'button_text' => get_option('button_text'),
-            'menu_font_size' => get_option('menu_font_size'),
-            'menu_space' => get_option('menu_space'),
-            'site_logo' => get_option('site_logo'),
-            'custom_logo_size' => get_option('custom_logo_size'),
-            'custom_logo_padding' => get_option('custom_logo_padding'),
-            'button_background' => get_option('button_background'),
-            'button_text_color' => get_option('button_text_color'),
-            'button_padding' => get_option('button_padding'),
-            'button_font_size' => get_option('button_font_size'),
-            'button_border' => get_option('button_border'),
-            'button_radius' => get_option('button_radius'),
-            'button_border_color' => get_option('button_border_color'),
-            'button_font_family' => get_option('button_font_family'),
-            'button_switch' => get_option('button_switch'),          
-        ];
+/***************EXPORT - IMPORT - RESET Function ******************/
 
-        header('Content-Disposition: attachment; filename="settings-export.json"');
-        header('Content-Type: application/json');
-        echo json_encode($options, JSON_PRETTY_PRINT);
-        exit;
-    }
-}
+//Export to a File
+require_once('export_settings/export_settings.php');
 
 
-
-//FUnction to Import from a File
-add_action('admin_init', 'handle_settings_import');
-
-function handle_settings_import(){
-    if(isset($_POST['import_settings']) && check_admin_referer('import_settings', 'import_nonce')){
-        //If File is not empty
-        if(!empty($_FILES['settings_file']['tmp_name'])){
-            $file_type = wp_check_filetype($_FILES['settings_file']['name']);
-            //We have added mime Type json after this code block
-            if ($file_type['ext'] !== 'json') {
-                add_settings_error(
-                    'export_import', 
-                    'file_type_error', 
-                    'Invalid file type. Please upload a JSON file.', 
-                    'error');
-                return;
-            }
-
-            //Get the json file content
-            $file_content = file_get_contents($_FILES['settings_file']['tmp_name']);
-            if(!$file_content){
-                add_settings_error(
-                    'export_import',
-                    'file_read_error',
-                    'Unable to read the file',
-                    'error',
-                );
-            }
-            //If content is ok then decode settings config to json
-            $settings = json_decode($file_content, true);
-            
-        }
-
-        if(json_last_error() === JSON_ERROR_NONE){
-            foreach($settings as $key => $value){
-                update_option($key, $value);
-            }
-            add_settings_error(
-                'export_import', 
-                'settings_imported', 
-                'Settings imported successfully!', 
-                'updated'
-            );
-        }else{
-            add_settings_error(
-                'export_import',
-                'json_decode_error', 
-                'Invalid JSON file. Error: ' . json_last_error_msg(), 
-                'error');
-        }
-    }
-    // else {
-    //     add_settings_error(
-    //         'export_import', 
-    //         'file_upload_error', 
-    //         'No file uploaded.', 
-    //         'error');
-    // }
-}
-
-// Add JSON MIME type 
-add_filter('upload_mimes', 'allow_json_uploads');
-function allow_json_uploads($mime_types) {
-    $mime_types['json'] = 'application/json'; 
-    return $mime_types;
-}
-
-//To display notice on the top
-add_action('admin_notices', 'my_admin_notices');
-function my_admin_notices() {
-    settings_errors('export_import');
-}
+//Import Settings from a File
+require_once('import_settings/import_settings.php');
 
 //Reset Settings File
 require_once('reset_settings/reset_settings.php');
