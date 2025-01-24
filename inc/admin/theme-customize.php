@@ -44,9 +44,7 @@ function theme_settings_page(){
                 settings_fields('theme_settings_group');
                 do_settings_sections('theme_customization');
                 submit_button();
-                echo '<p class="submit">';
-                echo '<input type="reset" name="reset" id="reset" class="button button-primary" value="Reset Values"  />';
-                echo '</p>';
+                
                 echo '</form>';
             } elseif ($tab == 'advanced') {
                 echo '<h2>Header Settings</h2>';
