@@ -1080,6 +1080,7 @@ function handle_settings_import(){
                 return;
             }
 
+            //Get the json file content
             $file_content = file_get_contents($_FILES['settings_file']['tmp_name']);
             if(!$file_content){
                 add_settings_error(
@@ -1089,6 +1090,7 @@ function handle_settings_import(){
                     'error',
                 );
             }
+            //If content is ok then decode to json
             $settings = json_decode($file_content, true);
             
         }
@@ -1110,24 +1112,25 @@ function handle_settings_import(){
                 'Invalid JSON file. Error: ' . json_last_error_msg(), 
                 'error');
         }
-    }else {
-        add_settings_error(
-            'export_import', 
-            'file_upload_error', 
-            'No file uploaded.', 
-            'error');
     }
+    // else {
+    //     add_settings_error(
+    //         'export_import', 
+    //         'file_upload_error', 
+    //         'No file uploaded.', 
+    //         'error');
+    // }
 }
 
+// Add JSON MIME type 
+add_filter('upload_mimes', 'allow_json_uploads');
 function allow_json_uploads($mime_types) {
-    $mime_types['json'] = 'application/json'; // Add JSON MIME type
+    $mime_types['json'] = 'application/json'; 
     return $mime_types;
 }
-add_filter('upload_mimes', 'allow_json_uploads');
 
-
+//To display notice on the top
 add_action('admin_notices', 'my_admin_notices');
-
 function my_admin_notices() {
     settings_errors('export_import');
 }
