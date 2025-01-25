@@ -86,7 +86,7 @@ function theme_settings_page(){
                         <input  type="file" 
                                 name="settings_file" 
                                 accept=".json" 
-                                required>
+                                required><br /><br />
                         <input  type="submit" 
                                 name="import_settings" 
                                 class="button button-primary" 
@@ -485,7 +485,7 @@ function theme_register_settings() {
     
 }
 
-/***************TOP NAV BARCALLBACK FUNCTIONS ****************/
+/***************TOP NAV BAR CALLBACK FUNCTIONS ****************/
 //For TOP nav On Off switch
 function toggle_switch_callback(){
     $value = get_option('toggle_switch');
@@ -963,7 +963,6 @@ a:active {
 
 //Export to a File
 require_once('export_settings/export_settings.php');
-
 
 //Import Settings from a File
 require_once('import_settings/import_settings.php');

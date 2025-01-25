@@ -1,6 +1,6 @@
 <?php
 
-//FUnction to Import from a File
+//Function to Import from a File
 add_action('admin_init', 'handle_settings_import');
 
 function handle_settings_import(){
