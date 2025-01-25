@@ -17,4 +17,14 @@ Main Header Section:
 3. Nav Menu Font Size can be changed.
 4. Nav Menu Font Family can be changed.
 5. Menu items space can be set.
-6. 
+6. Logo Can be set dynamically.
+7. Logo Size, Padding can be set.
+8. Toggle Switch to display or hide Call to Action Button.
+9. Button text, Button background color, Text Color, Padding, Font size,
+   Font family, Border can be set dynamically.
+
+Export - Import - Reset.
+1. We can export entire header settings config to a single file.
+2. We can Import settings config from a JSON file.
+3. We can reset the Header Design Settings completely.
+

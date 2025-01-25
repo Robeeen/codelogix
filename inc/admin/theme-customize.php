@@ -202,7 +202,7 @@ function theme_register_settings() {
     //For Top bar Switch ON-OFF
     add_settings_field(
         'toggle_switch', 
-        'Tob Bar On/Off:', 
+        'Top Bar On/Off:', 
         'toggle_switch_callback', 
         'theme_customization', 
         'theme_main_section',
