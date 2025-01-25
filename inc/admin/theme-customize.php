@@ -153,6 +153,7 @@ function theme_register_settings() {
     register_setting('advanced_settings_group', 'button_text');
     register_setting('advanced_settings_group', 'menu_font_size');
     register_setting('advanced_settings_group', 'menu_space');
+    register_setting('advanced_settings_group', 'menu_fonts');
     
 
     add_settings_section(
@@ -367,6 +368,15 @@ function theme_register_settings() {
         'menu_space', 
         'Menu Item Space (px)', 
         'menu_space_callback', 
+        'advanced_settings', 
+        'advanced_section'
+    );
+
+    //For Header Menu Item Space
+    add_settings_field(
+        'menu_fonts', 
+        'Menu Font Family', 
+        'menu_font_family_callback', 
         'advanced_settings', 
         'advanced_section'
     );
@@ -769,11 +779,13 @@ function button_radius_callback(){
 
 //Button Border 
 function button_border_color_callback(){
-    $value = get_option('button_border_color', '#ffffff');
-    ?>
-<input type="text" id="button_border_color" name="button_border_color" value="<?php echo esc_attr($value); ?>"
-    class="custom-color-field" />
-
+    $value = get_option('button_border_color', '#ffffff');?>
+    <input type="text" 
+            id="button_border_color" 
+            name="button_border_color" 
+            value="<?php echo esc_attr($value); ?>"
+            class="custom-color-field" 
+            />
 <?php
 }
 //List of All Fonts family Array
@@ -823,6 +835,19 @@ function load_selected_google_font() {
     }
 }
 add_action('wp_head', 'load_selected_google_font');
+
+function menu_font_family_callback(){
+    $selected_font = get_option('menu_fonts', 'Arial');
+    $fonts = codelogix_font_families();
+
+    echo '<select name="menu_fonts">';
+    foreach($fonts as $font){
+        $selected = ($selected_font == $font) ? 'selected' : '';
+        echo '<option value="' . esc_attr($font) . '" ' . $selected . '>' . esc_html($font) . '</option>';
+    }
+        echo '</select>';
+
+}
 
 //For Button Display switch
 function button_switch_callback(){
