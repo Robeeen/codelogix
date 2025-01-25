@@ -38,6 +38,7 @@ function handle_settings_export() {
             'button_border_color' => get_option('button_border_color'),
             'button_font_family' => get_option('button_font_family'),
             'button_switch' => get_option('button_switch'),          
+            'menu_fonts' => get_option('menu_fonts'),          
         ];
 
         header('Content-Disposition: attachment; filename="settings-export.json"');

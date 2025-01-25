@@ -1,0 +1,20 @@
+Features of the Dynamic Header:
+
+Top Bar Section:
+
+1. Toggle Switch to hide or display Top Bar.
+2. Email, Phone and WhatsApp Fields.
+3. Option to change Font Size and Font Color.
+4. Option to change height of the Top Bar.
+5. Option to change Background color of the Top Bar.
+6. Custom Links for Social Media Accounts.
+7. Option to change Social Media Icon Color.
+
+
+Main Header Section:
+1. Header Background Color can be changed.
+2. Header Border and Border Color can be changed.
+3. Nav Menu Font Size can be changed.
+4. Nav Menu Font Family can be changed.
+5. Menu items space can be set.
+6. 

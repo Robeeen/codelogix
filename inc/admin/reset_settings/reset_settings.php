@@ -39,7 +39,8 @@ function reset_function_header(){
             'button_radius' => '',
             'button_border_color' => '',
             'button_font_family' => '',
-            'button_switch' => '0',  
+            'button_switch' => '0', 
+            'menu_fonts' => '' 
         ];
 
         if(!empty($options)){

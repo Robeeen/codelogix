@@ -889,6 +889,7 @@ function display_top_bar_height(){
     $button_border_color = get_option('button_border_color'); //Get 
     $button_font_family = get_option('button_font_family'); //Get 
     $button_switch = get_option('button_switch'); //Get 
+    $menu_font_family = get_option('menu_fonts'); //Get 
 
    
     ?>
@@ -898,7 +899,6 @@ function display_top_bar_height(){
     font-size: <?php echo esc_attr($font_size);?>px;
     color: <?php echo esc_attr($font_color);?>;
     background: <?php echo esc_attr($top_backgrd);?>;
-
     display: <?php if($toggle_switch !=="1") {
         echo 'none';
     }
@@ -937,6 +937,7 @@ a:active {
 .menu-primary-menu-container ul li a {
     font-size: <?php echo esc_attr($nav_font_size);?>px;
     padding-right: <?php echo esc_attr($nav_space);?>px;
+    font-family: <?php echo esc_attr($menu_font_family); ?>;
 }
 
 .the_header li a:link,
